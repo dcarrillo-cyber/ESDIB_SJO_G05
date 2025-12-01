@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>VIDAR - Donaciones</title>
     <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+
    
 </head>
 
@@ -13,32 +15,102 @@
 
 
 <header class="header">
-    <img src="ilustraciones_logos/LOGOTIPO.svg" alt="Vidar Logo" class="logo">
-    <button class="menu-boton">☰</button>
+    <div class="menu">
+        
+        <img src="ilustraciones_logos/LOGOTIPO.svg" alt="Vidar Logo" class="logo">
+        <input type="checkbox" id="menu">
+        <label for="menu" class="menu-btn">
+            <img src="ilustraciones_logos/icono.menu.svg" class="menu-icono" alt="menu"></label>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Sangre</a></li>
+                <li><a href="#">Medula ósea</a></li>
+                <li><a href="#">Organos</a></li>
+                <li><a href="#">Leche materna</a></li>
+                <li><a href="#">Cordón umbilical</a></li>
+            </ul>
+        </nav>
+    </div>
 </header>
 
 
-
-
 <main>
-
-
     <!-- HERO -->
     <section class="hero">
-       
-
 
         <h2 class="slogan">"Un pequeño gesto puede salvar miles de vidas"</h2>
-
-
    
             <img src="ilustraciones_logos/Ilustración.banner.svg" alt="banner">
            
         <p>Cada donación tiene el poder de cambiar una vida. Descubre cómo puedes transformar el miedo en esperanza, la duda en acción. Aprende qué puedes donar, dónde y cómo hacerlo, y únete a miles de personas que ya han decidido que la vida de otro merece seguir. Tu gesto importa, y aquí te mostramos cómo hacerlo realidad.</p>
-       
-
 
     </section>
+
+    <!-- NOTICIAS -->
+    <section class="apartado-noticias">
+        
+        <h2>Últimas Noticias</h2>
+
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                
+                <!-- Noticia 1 -->
+                <div class="swiper-slide">
+                    <div class="noticias">
+                        <h3>Les Balears necessita donacions urgents del grup O+</h3>
+                        <img src="fotos/urgenciaopos_1_editora_7_436_1.jpeg" alt="Ima" > 
+                        <p>Baleares atraviesa una situación crítica: el Banco de Sangre solo cuenta con el 30% de las reservas necesarias del grupo 0 positivo, el más común y uno de los más demandados. Esta falta compromete la atención de emergencias y tratamientos que dependen de transfusiones. Por ello, se hace un llamamiento urgente a la población para que acuda a donar, conozcan o no su grupo sanguíneo. Cada donación es esencial para evitar que las reservas lleguen a niveles críticos.</p>
+                        <p>24 de diciembre de 2025</p>
+                        <a href="#" class="saber-mas-btn1" data-id="1">Saber más</a>
+                    </div>
+                </div>
+
+                <!-- Noticia 2 -->
+                <div class="swiper-slide">
+                    <div class="noticias">
+                        <h3>Luz verde a la nueva Ley de Protección de Datos de la UE</h3>
+                        <img src="fotos/urgenciaopos_1_editora_7_436_1.jpeg" alt="Ima" > 
+                        <p>El Parlamento Europeo ha ratificado hoy la nueva directiva sobre protección de datos personales. Esta ley introduce estándares más estrictos para la gestión de la información por parte de las empresas, garantizando un mayor control para los ciudadanos sobre sus datos. La normativa entrará en vigor en seis meses, dando tiempo a las organizaciones para adaptarse a los nuevos requisitos de transparencia y consentimiento explícito.</p>
+                        <p>25 de diciembre de 2025</p>
+                        <a href="#" class="saber-mas-btn1" data-id="2">Saber más</a>
+                    </div>
+                </div>
+
+                <!-- Noticia 3 -->
+                <div class="swiper-slide">
+                    <div class="noticias">
+                        <h3>Tendencias de Ciberseguridad para el 2026: ¿Qué esperar?</h3>
+                        <img src="fotos/urgenciaopos_1_editora_7_436_1.jpeg" alt="Ima" > 
+                        <p>Expertos en tecnología predicen que el próximo año estará marcado por el auge de los ataques de 'ransomware' dirigidos por IA. Además, se espera una consolidación de las soluciones de autenticación sin contraseña y una mayor inversión en la formación de empleados como principal barrera de defensa. Las pequeñas y medianas empresas se encuentran entre los objetivos más vulnerables, haciendo crucial la adopción de protocolos de seguridad avanzados.</p>
+                        <p>26 de diciembre de 2025</p>
+                        <a href="#" class="saber-mas-btn1" data-id="3">Saber más</a>
+                    </div>
+                </div>
+
+                <!-- Noticia 4 (Para asegurar que el loop funcione bien) -->
+                <div class="swiper-slide">
+                    <div class="noticias">
+                        <h3>Balance Deportivo: Triunfos en la Liga de Baloncesto Local</h3>
+                        <img src="fotos/urgenciaopos_1_editora_7_436_1.jpeg" alt="Ima" >
+                        <p>El equipo local "Los Halcones" ha cerrado la temporada con una victoria histórica, asegurando el primer puesto en la liga de baloncesto de la ciudad. El entrenador destacó la cohesión del equipo y el apoyo de la afición como claves para el éxito. Este triunfo les da el pase directo a la fase regional, donde se enfrentarán a los mejores equipos de la comunidad.</p>
+                        <p>27 de diciembre de 2025</p>
+                        <a href="#" class="saber-mas-btn1" data-id="4">Saber más</a>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Controles de Navegación -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            
+            <!-- Paginación (puntos inferiores) -->
+            <div class="swiper-pagination"></div>
+
+        </div>
+    </section>
+
 
 
     <!-- DONACIONES  -->
@@ -119,6 +191,8 @@
     <p>© 2025 Vidar. Todos los derechos reservados.</p>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>

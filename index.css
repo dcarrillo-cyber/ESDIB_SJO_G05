@@ -1,61 +1,108 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;700;900&display=swap');
 
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Raleway", sans-serif;
+    list-style: none;
+    text-decoration: none;
 }
-
 
 body {
     background: #fffbfb;
-    color: #222;
+    font-family: "Raleway", sans-serif;
 }
 
-
-/* HEADER */
-
+/* ENCABEZADO */
 
 .header {
+    width: 100%;
+    background: #ffffff;
+    align-items: center;
+    padding: 10px 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    position: sticky;
+    margin-bottom: 100px;
+}
+
+.menu {
+    max-width: 1200px;
+    margin: auto;
+    padding: 10px 10px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 20px;
-    background: white;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-    position: sticky;
-    top: 0;
+    position: relative;
 }
-
 
 .logo {
     width: 150px;
 }
 
-
-.menu-boton{
-    background: none;
-    border: none;
-    font-size: 28px;
+/* Icono de menu */
+.menu-btn {
     cursor: pointer;
+}
+
+.menu-icono {
+    width: 20px;
+    height: auto;
+}
+
+#menu {
+    display: none;
+}
+
+/* Menú desplegable */
+.navbar {
+
+    position:absolute;
+    width: 170px;
+    background: #ffffff;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.15);
+    display: none; 
+    border-radius: 8px;
+    justify-content: right;
+    margin-top: 20px;
+}
+
+.navbar ul {
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar ul li a {
+    padding: 15px;
+    display: block;
+    color: #020000;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.navbar ul li a:hover {
+    background: #880909;
+    color: white;
+    justify-items: right;
+}
+
+#menu:checked ~ .navbar {
+    display: block;
 }
 
 
 /* HERO */
 
-
 .hero {
-    padding: 30px 20px;
-    text-align: center;
+    padding: 10px 15px;
+    align-items: center;
 }
 
 
 .slogan {
-    font-size: 28px;
+    text-align: center;
+    font-size: 60px;
     font-weight: 900;
-    margin-bottom: 20px;
+    width: 100%;
 }
 
 
@@ -66,14 +113,138 @@ body {
 
 
 .hero p {
+    text-align: center;
     background: white;
     padding: 15px;
     border-radius: 15px;
     max-width: 700px;
     margin: auto;
     box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+    margin-bottom: 30px;
 }
 
+
+/* NOTICIAS */
+
+/* NOTICIAS - Se elimina el width fijo para permitir el modo 3-slide */
+        .apartado-noticias {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px 20px;
+            /* Se usa max-width en lugar de width fijo para la responsividad */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+            padding-bottom: 50px; /* Espacio para la paginación y las flechas */
+        }
+
+        .swiper-slide {
+            text-align: center;
+            padding: 20px 10px;
+            /* Estilo de tarjeta para cada noticia */
+            background-color: #f6f6f6;
+            border-radius: 12px;
+            height: auto; /* Altura automática */
+        }
+
+        .noticias {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .apartado-noticias h3 {
+            font-size: 1.25rem; /* Título más grande */
+            color: #000000; /* Color de énfasis (Rojo suave) */
+            margin-bottom: 10px;
+            line-height: 1.3;
+            min-height: 50px; /* Espacio para 2 líneas de título */
+        }
+
+        .apartado-noticias img {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+            object-fit: cover;
+        }
+
+        .apartado-noticias p {
+            margin-top: 15px;
+            font-size: 0.85rem;
+            text-align: justify;
+            padding: 0 10px;
+        }
+        
+        /* Estilo para la fecha, más discreto */
+        .noticias p:last-of-type {
+            font-size: 0.75rem;
+            color: #aaaaaa;
+            margin-top: 15px;
+            text-align: center;
+            padding: 0;
+        }
+
+        .saber-mas-btn1 {
+            display: inline-block;
+            color: white;
+            font-weight: 500;
+            padding: 10px 20px;
+            background-color: #bb0710; /* Rojo original */
+            font-size: 0.9rem;
+            margin-top: 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Corrección de sintaxis y hover */
+        .saber-mas-btn1:hover {
+            background-color: #4c030d; /* Verde */
+            cursor: pointer;
+        }
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            color: #bb0710; /* Color rojo para las flechas */
+            top: 50%; 
+            z-index: 10; /* CRÍTICO: Asegura que estén por encima de los slides y sean clicables */
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .swiper-button-prev:hover,
+        .swiper-button-next:hover {
+            color: #ff7f7f; /* Color más claro al pasar el ratón */
+            transform: scale(1.1); /* Ligera animación de escala */
+        }
+
+        .swiper-button-prev::after,
+        .swiper-button-next::after {
+            font-size: 25px;
+        }
+
+        /* Estilos de Swiper Pagination (Puntos) */
+        .swiper-pagination {
+            bottom: 10px !important; /* Asegurar que esté abajo */
+        }
+        
+        .swiper-pagination-bullet {
+            background-color: #f0f0f0; /* Color del punto inactivo (claro) */
+            opacity: 0.5;
+            transition: background-color 0.3s;
+        }
+
+        .swiper-pagination-bullet-active {
+            background-color: #bb0710; /* Color del punto activo (Rojo) */
+            opacity: 1;
+        }
 
 /* DONACIONES */
 
@@ -128,9 +299,6 @@ body {
     width: 100%;
 }
 
-
-
-
 /* FOOTER */
 
 
@@ -144,12 +312,12 @@ body {
 }
 /* SECCIÓN CONTACTO */
 .contact-section {
+    width: 100%;
     padding: 30px 20px;
     background: #ffeeef;
     border-top: 1px solid #f4e9ea;
     margin-top: 40px;
 }
-
 
 .contact-section h2 {
     text-align: center;
@@ -157,7 +325,6 @@ body {
     font-weight: 800;
     margin-bottom: 20px;
 }
-
 
 /* INFO BÁSICA */
 .contact-info {
@@ -213,4 +380,83 @@ body {
 
 .contact-form button:hover {
     background: #bb0710;
+}
+
+
+
+/* versión móvil */
+@media (max-width: 768px){
+  
+    .menu{
+        padding: 30px;
+    }
+
+    .menu label{
+        display: initial;
+    }
+
+    .menu .navbar{
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: none;
+    }
+
+    .navbar ul{
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background: white;
+        flex-direction: column;
+        display: none;
+    }
+
+    #menu:checked ~ .navbar ul{
+        display: initial;
+    }
+
+    .menu-icono{
+        display: block;
+    }
+
+   .hero{
+    flex-direction: column;
+    padding: 30px;
+    margin-top: 150px;
+   }
+
+   .hero h2{
+    font-size: 20px;
+   }
+
+   .hero h2{
+    font-size: 40px;
+   }.
+
+   .section-donation-list{
+    flex-direction: column;
+    align-items: center;
+   }
+
+   .apartado-noticias{
+    flex-direction: column ;
+    padding: 30px;
+    text-align: center;
+
+   }
+  
+   .noticias{
+    width: 100%;
+    margin-bottom: 25px;
+   }
+
+   .contact-section{
+    padding: 30px;
+   }
+
+   .footer{
+    padding: 30px;
+   }
 }
