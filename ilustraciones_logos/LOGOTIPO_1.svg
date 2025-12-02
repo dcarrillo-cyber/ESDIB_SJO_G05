@@ -7,7 +7,7 @@
       }
 
       .cls-2 {
-        font-size: 21px;
+        fill: #1d1d1b;
       }
 
       .cls-3 {
@@ -31,21 +31,22 @@
       }
 
       .cls-8 {
-        fill: #1d1d1b;
-        font-family: ArticulatCF-Medium, 'Articulat CF';
-        font-weight: 500;
-      }
-
-      .cls-9 {
         letter-spacing: -.04em;
       }
 
+      .cls-9 {
+        font-family: ArticulatCF-Normal, 'Articulat CF';
+        font-size: 21px;
+      }
+
       .cls-10 {
-        letter-spacing: 0em;
+        font-family: ArticulatCF-ExtraBold, 'Articulat CF';
+        font-size: 90px;
+        font-weight: 700;
       }
 
       .cls-11 {
-        font-size: 90px;
+        letter-spacing: 0em;
       }
     </style>
   </defs>
@@ -53,5 +54,5 @@
     <path class="cls-3" d="M74.73,0c8.51,10.59,16.8,20.93,25.13,31.25,10.02,12.41,20.32,24.62,30.05,37.26,9.2,11.94,16.24,25.06,18.68,40.21,4.06,25.24-3.17,46.87-21.46,64.55-16.02,15.49-35.5,22.41-57.71,20.89-35.41-2.43-61.34-28.45-67.81-58.67-4.61-21.51.88-41.16,12.99-58.91,7.86-11.52,16.72-22.36,25.36-33.33C51.01,29.24,62.28,15.41,73.45,1.5c.31-.38.64-.75,1.28-1.5ZM74.78,32.54c-5.36,6.59-10.58,12.79-15.55,19.19-9.84,12.66-19.93,25.15-29.17,38.24-8.49,12.02-11.29,25.67-8.76,40.38,3.9,22.66,30.38,47.4,61.85,42.76,31.6-4.66,60.84-40.49,39.74-78.33-6.03-10.81-14.12-20.53-21.77-30.35-8.4-10.77-17.38-21.09-26.34-31.88Z"/>
     <path class="cls-3" d="M118.57,112.62c0,6.46-2.46,12.92-7.39,17.85l-36.38,36.38-35.7-35.7.06-.05-.78-.78c-4.93-4.93-7.39-11.39-7.39-17.85s2.46-12.92,7.39-17.85c.25-.25.49-.49.75-.72,11.3-10.55,29.8-5.76,35.02,8.79l.63,1.76.25-.8c4.77-15.15,23.8-20.47,35.41-9.62.25.23.5.48.75.72,4.93,4.93,7.39,11.39,7.39,17.85Z"/>
   </g>
-  <text class="cls-8" transform="translate(159.94 64.05)"><tspan class="cls-2"><tspan class="cls-4" x="0" y="0">D</tspan><tspan class="cls-1" x="13.88" y="0">a</tspan><tspan class="cls-6" x="25.45" y="0">r</tspan><tspan x="33.2" y="0"> </tspan><tspan class="cls-4" x="38.03" y="0">v</tspan><tspan x="49.75" y="0">ida es</tspan><tspan class="cls-5" x="104.71" y="0">t</tspan><tspan x="111.8" y="0">á en tus m</tspan><tspan class="cls-10" x="209.45" y="0">a</tspan><tspan x="221.02" y="0">nos</tspan></tspan><tspan class="cls-11"><tspan x="0" y="82">V</tspan><tspan class="cls-7" x="63.72" y="82">I</tspan><tspan class="cls-9" x="83.52" y="82">D</tspan><tspan x="139.86" y="82">AR</tspan></tspan></text>
+  <text class="cls-2" transform="translate(159.94 64.05)"><tspan class="cls-9"><tspan class="cls-4" x="0" y="0">D</tspan><tspan class="cls-1" x="13.63" y="0">a</tspan><tspan class="cls-6" x="24.95" y="0">r</tspan><tspan x="32.28" y="0"> </tspan><tspan class="cls-4" x="37.11" y="0">v</tspan><tspan x="48.36" y="0">ida es</tspan><tspan class="cls-5" x="101.95" y="0">t</tspan><tspan x="108.52" y="0">á en tus m</tspan><tspan class="cls-11" x="203.88" y="0">a</tspan><tspan x="215.2" y="0">nos</tspan></tspan><tspan class="cls-10"><tspan x="0" y="82">V</tspan><tspan class="cls-7" x="68.13" y="82">I</tspan><tspan class="cls-8" x="92.79" y="82">D</tspan><tspan x="151.56" y="82">AR</tspan></tspan></text>
 </svg>

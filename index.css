@@ -109,6 +109,7 @@ body {
 .hero img {
     width: 100%;
     margin: 15px 0;
+    margin-bottom: 0;
 }
 
 
@@ -120,7 +121,8 @@ body {
     max-width: 700px;
     margin: auto;
     box-shadow: 0 8px 18px rgba(0,0,0,0.12);
-    margin-bottom: 30px;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
 
@@ -157,6 +159,13 @@ body {
             flex-direction: column;
             align-items: center;
             padding: 10px;
+        }
+
+        .apartado-noticias h2 {
+            font-size: 1.2rem; 
+            font-weight: 400;
+            color: #373737; 
+            margin-bottom: 30px;
         }
 
         .apartado-noticias h3 {
@@ -256,16 +265,25 @@ body {
 
 .title {
     text-align: center;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 900;
-    margin-bottom: 25px;
+    margin-top: 50px;
+    margin-bottom: 30px;
 }
 
+
+.donation-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    gap: 50px; 
+}
 
 /* items donaciones */
 .item {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 0;
+    width: 100%; 
 }
 
 
@@ -385,6 +403,43 @@ body {
 
 
 /* versión móvil */
+
+@media screen and (min-width: 600px) {
+
+    .donation-list {
+        flex-direction: row; /* Horizontal */
+        flex-wrap: wrap; /* Permite que los ítems se envuelvan */
+        justify-content: center; /* Centrar los ítems dentro del contenedor */
+        gap: 30px; /* Espacio entre los ítems */
+    }
+
+    .item {
+        /* Calculamos el ancho: 3 ítems por fila, dejando espacio para 2 gaps (20px cada uno) 
+           (100% - 40px) / 3 */
+        flex-basis: calc(33.333% - 13.333px);
+        max-width: 200px; /* Limitamos el ancho para que no se separen demasiado */
+    }
+}
+
+
+/* Escritorio (min-width: 992px): Diseño 3 arriba, 2 abajo con más espacio */
+@media screen and (min-width: 992px) {
+
+    .donation-list {
+        /* Usamos space-around o space-evenly para dar más separación */
+        justify-content: space-evenly; 
+        gap: 70px 20px; /* Más espacio vertical (50px) y horizontal (30px) */
+        max-width: 1280px; /* Limita el ancho total para centrarlo si el viewport es muy grande */
+        margin: 0 auto;
+    }
+
+    .item {
+        /* Mantenemos la base del 33.33% y aumentamos el max-width */
+        flex-basis: calc(33.333% - 20px);
+        max-width: 200px; /* Aumentamos el ancho máximo para más espacio entre ellos */
+    }
+}
+
 @media (max-width: 768px){
   
     .menu{
@@ -435,10 +490,7 @@ body {
     font-size: 40px;
    }.
 
-   .section-donation-list{
-    flex-direction: column;
-    align-items: center;
-   }
+
 
    .apartado-noticias{
     flex-direction: column ;
