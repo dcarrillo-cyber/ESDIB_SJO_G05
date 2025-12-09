@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style-upload.css" />
+  <title>Vidar DB - Gestión de Donaciones</title>
+</head>
+
+<body>
+  <div class="main_content">
+    <div class="header">
+      <div class="header_contenido">
+        <a href="/" class="btn-back">Volver a la Web</a>
+        <div class="logo">
+          <span class="logo_header">
+            <h3>VIDAR DB ADMIN</h3>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main_container" id="main_content">
+
+    <!-- Navegación -->
+    <div class="nav-tabs">
+      <div class="nav-tab active" data-target="donantes">Donantes</div>
+      <div class="nav-tab" data-target="tipos">Tipos Donación</div>
+      <div class="nav-tab" data-target="centros">Centros</div>
+      <div class="nav-tab" data-target="donaciones">Donaciones Realizadas</div>
+      <div class="nav-tab" data-target="contacto">Contacto</div>
+      <div class="nav-tab" data-target="noticias">Noticias</div>
+    </div>
+
+    <!-- SECCIÓN DONANTES -->
+    <div id="donantes" class="section-content active">
+      <div class="title">GESTIÓN DE DONANTES</div>
+      <div class="formulario">
+        <form id="form_donantes">
+          <input type="hidden" name="_id">
+          <div class="form-group">
+            <label>Nombre *</label>
+            <input type="text" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label>Apellidos</label>
+            <input type="text" name="apellidos">
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="text" name="telefono">
+          </div>
+          <div class="form-group">
+            <label>Fecha Nacimiento</label>
+            <input type="date" name="fecha_nacimiento">
+          </div>
+          <div class="form-group">
+            <label>Provincia</label>
+            <input type="text" name="provincia">
+          </div>
+          <div class="form-group">
+            <label>Es Donante Registrado</label>
+            <select name="es_donante_registrado">
+              <option value="false">No</option>
+              <option value="true">Sí</option>
+            </select>
+          </div>
+          <div class="input_container_button">
+            <button type="submit">GUARDAR DONANTE</button>
+            <button type="button" class="cancel-edit" style="display:none;">CANCELAR</button>
+          </div>
+        </form>
+        <h2>Lista de Donantes</h2>
+        <ul id="list_donantes"></ul>
+      </div>
+    </div>
+
+    <!-- SECCIÓN TIPOS DONACIÓN -->
+    <div id="tipos" class="section-content">
+      <div class="title">TIPOS DE DONACIÓN</div>
+      <div class="formulario">
+        <form id="form_tipos">
+          <input type="hidden" name="_id">
+          <div class="form-group">
+            <label>Nombre *</label>
+            <input type="text" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label>Descripción General</label>
+            <textarea name="descripcion_general" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Requisitos</label>
+            <textarea name="requisitos" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Pasos</label>
+            <textarea name="pasos" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Beneficios</label>
+            <textarea name="beneficios" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Color Identidad (Hex)</label>
+            <input type="color" name="color_identidad">
+          </div>
+          <div class="input_container_button">
+            <button type="submit">GUARDAR TIPO</button>
+            <button type="button" class="cancel-edit" style="display:none;">CANCELAR</button>
+          </div>
+        </form>
+        <h2>Lista de Tipos</h2>
+        <ul id="list_tipos"></ul>
+      </div>
+    </div>
+
+    <!-- SECCIÓN CENTROS -->
+    <div id="centros" class="section-content">
+      <div class="title">CENTROS DE DONACIÓN</div>
+      <div class="formulario">
+        <form id="form_centros">
+          <input type="hidden" name="_id">
+          <div class="form-group">
+            <label>Nombre *</label>
+            <input type="text" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label>Dirección</label>
+            <input type="text" name="direccion">
+          </div>
+          <div class="form-group">
+            <label>Provincia</label>
+            <input type="text" name="provincia">
+          </div>
+          <div class="form-group">
+            <label>Teléfono</label>
+            <input type="text" name="telefono">
+          </div>
+          <div class="form-group">
+            <label>Email Contacto</label>
+            <input type="email" name="email_contacto">
+          </div>
+          <div class="form-group">
+            <label>Horario</label>
+            <input type="text" name="horario">
+          </div>
+          <div class="form-group">
+            <label>Latitud</label>
+            <input type="number" step="any" name="lat">
+          </div>
+          <div class="form-group">
+            <label>Longitud</label>
+            <input type="number" step="any" name="lon">
+          </div>
+          <div class="form-group">
+            <label>Tipos Disponibles (IDs separados por coma)</label>
+            <input type="text" name="tipos_disponibles" placeholder="ID1, ID2...">
+          </div>
+          <div class="input_container_button">
+            <button type="submit">GUARDAR CENTRO</button>
+            <button type="button" class="cancel-edit" style="display:none;">CANCELAR</button>
+          </div>
+        </form>
+        <h2>Lista de Centros</h2>
+        <ul id="list_centros"></ul>
+      </div>
+    </div>
+
+    <!-- SECCIÓN DONACIONES REALIZADAS -->
+    <div id="donaciones" class="section-content">
+      <div class="title">DONACIONES REALIZADAS</div>
+      <div class="formulario">
+        <form id="form_donaciones">
+          <input type="hidden" name="_id">
+          <div class="form-group">
+            <label>ID Donante *</label>
+            <input type="text" name="id_donante" required placeholder="ObjectId del Donante">
+          </div>
+          <div class="form-group">
+            <label>ID Tipo Donación *</label>
+            <input type="text" name="id_tipo" required placeholder="ObjectId del Tipo">
+          </div>
+          <div class="form-group">
+            <label>ID Centro *</label>
+            <input type="text" name="id_centro" required placeholder="ObjectId del Centro">
+          </div>
+          <div class="form-group">
+            <label>Fecha Donación</label>
+            <input type="date" name="fecha_donacion">
+          </div>
+          <div class="form-group">
+            <label>Estado</label>
+            <select name="estado">
+              <option value="pendiente">Pendiente</option>
+              <option value="completada">Completada</option>
+              <option value="cancelada">Cancelada</option>
+            </select>
+          </div>
+          <div class="input_container_button">
+            <button type="submit">GUARDAR DONACIÓN</button>
+            <button type="button" class="cancel-edit" style="display:none;">CANCELAR</button>
+          </div>
+        </form>
+        <h2>Lista de Donaciones</h2>
+        <ul id="list_donaciones"></ul>
+      </div>
+    </div>
+
+    <!-- SECCIÓN CONTACTO -->
+    <div id="contacto" class="section-content">
+      <div class="title">MENSAJES DE CONTACTO</div>
+      <div class="formulario">
+        <form id="form_contacto">
+          <input type="hidden" name="_id">
+          <div class="form-group">
+            <label>Nombre *</label>
+            <input type="text" name="nombre" required>
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label>Mensaje</label>
+            <textarea name="mensaje" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Fecha Envío</label>
+            <input type="date" name="fecha_envio">
+          </div>
+          <div class="input_container_button">
+            <button type="submit">GUARDAR CONTACTO</button>
+            <button type="button" class="cancel-edit" style="display:none;">CANCELAR</button>
+          </div>
+        </form>
+        <h2>Lista de Mensajes</h2>
+        <ul id="list_contacto"></ul>
+      </div>
+    </div>
+
+    <!-- SECCIÓN NOTICIAS -->
+    <div id="noticias" class="section-content">
+      <div class="title">GESTIÓN DE NOTICIAS</div>
+      <div class="formulario">
+        <form id="form_noticias">
+          <input type="hidden" name="_id">
+          <div class="form-group">
+            <label>Título *</label>
+            <input type="text" name="titulo" required>
+          </div>
+          <div class="form-group">
+            <label>Imagen</label>
+            <input type="file" name="imagen_file" accept="image/*">
+            <input type="hidden" name="imagen">
+            <p class="help-text" style="font-size:0.8rem; color:#666;">Selecciona un archivo para subir a Azure o deja
+              vacío para mantener la actual.</p>
+          </div>
+          <div class="form-group">
+            <label>Contenido *</label>
+            <textarea name="contenido" rows="5" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Fecha</label>
+            <input type="date" name="fecha">
+          </div>
+          <div class="input_container_button">
+            <button type="submit">GUARDAR NOTICIA</button>
+            <button type="button" class="cancel-edit" style="display:none;">CANCELAR</button>
+          </div>
+        </form>
+        <h2>Lista de Noticias</h2>
+        <ul id="list_noticias"></ul>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VIDAR - Donaciones</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+
+
+</head>
+
+
+<body>
+
+
+    <header class="header">
+        <div class="menu">
+
+            <img src="ilustraciones_logos/LOGOTIPO.svg" alt="Vidar Logo" class="logo">
+            <input type="checkbox" id="menu">
+            <label for="menu" class="menu-btn">
+                <div class="nav-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </label>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Sangre</a></li>
+                    <li><a href="#">Medula ósea</a></li>
+                    <li><a href="#">Organos</a></li>
+                    <li><a href="#">Leche materna</a></li>
+                    <li><a href="#">Cordón umbilical</a></li>
+                    <!-- Login Button -->
+                    <li id="nav-login"><a href="#" id="open-login-btn">Iniciar Sesión</a></li>
+                    <li id="nav-admin" style="display:none;"><a href="/admin">Panel Admin</a></li>
+                    <li id="nav-user" style="display:none;"><a href="#" id="logout-btn">Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+
+            <h2 class="slogan">"Un pequeño gesto puede salvar miles de vidas"</h2>
+
+            <img src="ilustraciones_logos/Ilustración.banner.svg" alt="banner">
+
+            <p>Cada donación tiene el poder de cambiar una vida. Descubre cómo puedes transformar el miedo en esperanza,
+                la duda en acción. Aprende qué puedes donar, dónde y cómo hacerlo, y únete a miles de personas que ya
+                han decidido que la vida de otro merece seguir. Tu gesto importa, y aquí te mostramos cómo hacerlo
+                realidad.</p>
+
+        </section>
+
+        <!-- NOTICIAS -->
+        <section class="apartado-noticias">
+
+            <h2>Últimas Noticias</h2>
+
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <!-- Las noticias se cargan dinámicamente desde la base de datos -->
+                </div>
+
+                <!-- Controles de Navegación -->
+                <!-- Controles de Navegación -->
+                <div class="swiper-button-next">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                        stroke="currentColor" style="width: 24px; height: 24px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                </div>
+                <div class="swiper-button-prev">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5"
+                        stroke="currentColor" style="width: 24px; height: 24px;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                    </svg>
+                </div>
+
+                <!-- Paginación (puntos inferiores) -->
+                <div class="swiper-pagination"></div>
+
+            </div>
+        </section>
+
+
+
+        <!-- DONACIONES  -->
+        <section class="section donation-list">
+            <h2 class="title">Donaciones</h2>
+
+
+            <div class="item">
+                <h3>Sangre</h3>
+                <button class="circle-boton">
+                    <img src="ilustraciones_logos/sang.svg" alt="Icono sangre">
+                </button>
+            </div>
+
+
+            <div class="item">
+                <h3>Médula ósea</h3>
+                <button class="circle-boton">
+                    <img src="ilustraciones_logos/medula.svg" alt="Icono médula">
+                </button>
+            </div>
+
+
+            <div class="item">
+                <h3>Órganos</h3>
+                <button class="circle-boton">
+                    <img src="ilustraciones_logos/organ.svg" alt="Icono organos">
+                </button>
+            </div>
+
+
+            <div class="item">
+                <h3>Leche materna</h3>
+                <button class="circle-boton">
+                    <img src="ilustraciones_logos/llet.svg" alt="Icono leche">
+                </button>
+            </div>
+
+
+            <div class="item">
+                <h3>Cordón umbilical</h3>
+                <button class="circle-boton">
+                    <img src="ilustraciones_logos/cordon.svg" alt="Icono cordon">
+                </button>
+            </div>
+
+
+        </section>
+
+
+        <!-- CONTACTO  -->
+
+
+        <section class="contact-section">
+            <h2>Contacto</h2>
+
+
+            <div class="contact-info">
+                <p><strong>Email:</strong> contacto@vidar.org</p>
+                <p><strong>Teléfono:</strong> +34 600 123 456</p>
+                <p><strong>Dirección:</strong> Calle Salud 45, Barcelona</p>
+            </div>
+
+
+            <form class="contact-form" id="contact-form-main">
+                <input type="text" id="contact-name" placeholder="Tu nombre" required>
+                <input type="email" id="contact-email" placeholder="Tu correo" required>
+                <textarea id="contact-message" placeholder="Tu mensaje" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+
+
+    </main>
+
+
+    <footer class="footer">
+        <p>© 2025 Vidar. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- AUTH MODAL -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+
+            <!-- Login Form -->
+            <div id="login-section">
+                <h2>Iniciar Sesión</h2>
+                <form id="form-login">
+                    <div class="form-group">
+                        <label>Usuario</label>
+                        <input type="text" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Entrar</button>
+                    <p class="switch-auth">¿No tienes cuenta? <a href="#" id="go-to-register">Regístrate</a></p>
+                </form>
+            </div>
+
+            <!-- Register Form -->
+            <div id="register-section" style="display:none;">
+                <h2>Registrarse</h2>
+                <form id="form-register">
+                    <div class="form-group">
+                        <label>Usuario</label>
+                        <input type="text" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Registrarse</button>
+                    <p class="switch-auth">¿Ya tienes cuenta? <a href="#" id="go-to-login">Inicia Sesión</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="index.js?v=2"></script>
+</body>
+
+</html>
