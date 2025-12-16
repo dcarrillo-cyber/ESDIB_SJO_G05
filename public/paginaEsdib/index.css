@@ -177,7 +177,6 @@ body {
 
 .slogan {
     font-size: 32px;
-    /* Smaller font on mobile */
     font-weight: 900;
     margin-bottom: 20px;
     line-height: 1.2;
@@ -244,6 +243,7 @@ body {
     align-items: center;
     transition: transform 0.3s;
     will-change: transform;
+    width: 60%;
 }
 
 .noticias:hover {
@@ -692,3 +692,98 @@ body {
     font-weight: bold;
     cursor: pointer;
 }
+
+
+
+/* ============================
+   DONACIÓN DE SANGRE
+   ============================ */
+
+   /* HERO_SANGRE */
+
+   .hero_sangre{
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+   }
+
+   .hero_sangre h1{
+    font-size: 32px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: var(--primary-color);
+   }
+
+   .hero_sangre p {
+    background: white;
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+
+
+   /* Tipos de sangre */
+
+
+
+
+   .contenedor {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+gap: 20px;
+max-width: 800px;
+margin: 50px auto;
+}
+
+
+.tipo-sangre {
+position: relative;
+background: white;
+border-radius: 12px;
+padding: 30px;
+text-align: center;
+font-size: 24px;
+font-weight: bold;
+cursor: pointer;
+box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+   .info-hover {
+position: absolute;
+bottom: 110%;
+left: 50%;
+transform: translateX(-50%);
+width: 220px;
+background: #b11226;
+color: white;
+padding: 15px;
+border-radius: 10px;
+font-size: 14px;
+opacity: 0;
+pointer-events: none;
+transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+.tipo-sangre:hover .info-hover {
+opacity: 1;
+transform: translateX(-50%) translateY(-5px);
+}
+
+
+.info-hover::after {
+content: "";
+position: absolute;
+top: 100%;
+left: 50%;
+transform: translateX(-50%);
+border-width: 8px;
+border-style: solid;
+border-color: #b11226 transparent transparent transparent;
+}
+
