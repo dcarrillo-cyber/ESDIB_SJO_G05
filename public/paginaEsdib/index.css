@@ -433,13 +433,14 @@ body {
 
 .contact-section h2 {
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     font-size: 28px;
 }
 
 .contact-info {
     text-align: center;
     margin-bottom: 30px;
+    
 }
 
 .contact-form {
@@ -568,6 +569,7 @@ body {
 
     .contact-info {
         text-align: left;
+        margin-left: 50px;
         font-size: 1.1rem;
     }
 
@@ -709,28 +711,28 @@ body {
    }
 
    .hero_sangre h1{
-    font-size: 32px;
+    font-size: 36px;
     font-weight: 900;
     margin-bottom: 20px;
     line-height: 1.2;
     color: var(--primary-color);
+     margin-bottom: 40px
    }
 
    .hero_sangre p {
-    background: white;
+    text-align: justify;
+    background: rgb(254, 225, 225);
     padding: 20px;
     border-radius: var(--radius);
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
     margin: 20px auto;
     max-width: 800px;
+     margin-bottom: 50px
 }
 
 
 
    /* Tipos de sangre */
-
-
-
 
    .contenedor {
 display: grid;
@@ -786,4 +788,212 @@ border-width: 8px;
 border-style: solid;
 border-color: #b11226 transparent transparent transparent;
 }
+
+
+
+/* ============================
+   DONACIÓN DE MEDULA ÓSEA
+   ============================ */
+
+   /* HERO_SANGRE */
+
+   .hero_medula{
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+   }
+
+   .hero_medula h1{
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: #F59D2A;
+     margin-bottom: 40px
+   }
+
+   .hero_medula p {
+    text-align: justify;
+    background: #faebd6;
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    margin: 20px auto;
+    max-width: 800px;
+     margin-bottom: 50px
+}
+
+
+   /* Tipos de celulas */
+
+   .contenedor-medula {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+gap: 20px;
+max-width: 800px;
+margin: 50px auto;
+}
+
+
+.tipo-medula {
+position: relative;
+background: white;
+border-radius: 12px;
+padding: 30px;
+text-align: center;
+font-size: 24px;
+font-weight: bold;
+cursor: pointer;
+box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+ .tipo-medula .info-hover {
+position: absolute;
+bottom: 110%;
+left: 50%;
+transform: translateX(-50%);
+width: 220px;
+background: #F59D2A;
+color: white;
+padding: 15px;
+border-radius: 10px;
+font-size: 14px;
+opacity: 0;
+pointer-events: none;
+transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+
+.tipo-medula:hover .info-hover {
+opacity: 1;
+transform: translateX(-50%) translateY(-5px);
+}
+
+
+.info-hover::after {
+content: "";
+position: absolute;
+top: 100%;
+left: 50%;
+transform: translateX(-50%);
+border-width: 8px;
+border-style: solid;
+border-color: #F59D2A transparent transparent transparent;
+}
+
+
+
+/* ============================
+   DONACIÓN DE ORGANOS
+   ============================ */
+
+   /* HERO_ORGANOS */
+
+   .hero_organos{
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+   }
+
+   .hero_organos h1{
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: #91C25A;
+     margin-bottom: 40px
+   }
+
+   .hero_organos p {
+    text-align: justify;
+    background: #e7fccf;
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    margin: 20px auto;
+    max-width: 800px;
+     margin-bottom: 50px
+}
+
+
+   /* Lista de espera transplantes */
+
+   
+
+
+/* ============================
+   DONACIÓN DE LECHE MATERNA
+   ============================ */
+
+   /* HERO_LECHE */
+
+   .hero_leche{
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+   }
+
+   .hero_leche h1{
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: #e8cfae;
+     margin-bottom: 40px
+   }
+
+   .hero_leche p {
+    text-align: justify;
+    background: #f8f2ea;
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    margin: 20px auto;
+    max-width: 800px;
+     margin-bottom: 50px
+}
+
+
+/* ============================
+   DONACIÓN DE CORODÓN UMBILICAL
+   ============================ */
+
+   /* HERO_LECHE */
+
+   .hero_cordon{
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+   }
+
+   .hero_cordon h1{
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: #74CBF4;
+     margin-bottom: 40px
+   }
+
+   .hero_cordon p {
+    text-align: justify;
+    background: #d3f1fe;
+    padding: 20px;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+    margin: 20px auto;
+    max-width: 800px;
+     margin-bottom: 50px
+}
+
+
+
+
+
+
+
 

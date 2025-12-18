@@ -31,10 +31,10 @@
                 <ul>
                     <li><a href="index.html">Inicio</a></li>
                     <li><a href="sangre.html">Sangre</a></li>
-                    <li><a href="#">Medula ósea</a></li>
-                    <li><a href="#">Organos</a></li>
-                    <li><a href="#">Leche materna</a></li>
-                    <li><a href="#">Cordón umbilical</a></li>
+                    <li><a href="medula.html">Medula ósea</a></li>
+                    <li><a href="organos.html">Organos</a></li>
+                    <li><a href="leche.html">Leche materna</a></li>
+                    <li><a href="cordon.html">Cordón umbilical</a></li>
                     <!-- Login Button -->
                     <li id="nav-login"><a href="#" id="open-login-btn">Iniciar Sesión</a></li>
                     <li id="nav-admin" style="display:none;"><a href="/admin">Panel Admin</a></li>
@@ -48,8 +48,8 @@
         <section class="hero_sangre">
 
             <h1>DONACIONES DE SANGRE</h1>
-            <p>La donación de sangre es un acto voluntario, altruista y seguro mediante el cual una persona entrega una pequeña cantidad de su sangre para que sea utilizada en transfusiones o en la obtención de componentes sanguíneos.<br>
-                Cada donación puede salvar hasta tres vidas, ya que la sangre se separa en glóbulos rojos, plaquetas y plasma, que se administran a pacientes con diferentes necesidades: operaciones, accidentes, partos complicados, cáncer, anemia o trasplantes.
+            <p>La donación de sangre es un acto voluntario, altruista y seguro mediante el cual una persona entrega una pequeña cantidad de su sangre para que sea utilizada en transfusiones o en la obtención de componentes sanguíneos. <br>
+                <br> Cada donación puede salvar hasta tres vidas, ya que la sangre se separa en glóbulos rojos, plaquetas y plasma, que se administran a pacientes con diferentes necesidades: operaciones, accidentes, partos complicados, cáncer, anemia o trasplantes.
                 Es un procedimiento sencillo, dura unos 20 minutos y el cuerpo repone el volumen sanguíneo en pocas horas.</p>
 
     <!-- Tipos de sangre -->
@@ -57,7 +57,7 @@
             <h2>Que tipos de sangre hay?</h2>
             <h3>¿Qué grupos sanguíneos están disponibles y cuáles hacen falta?</h3>
 
-    <div class="contenedor">
+    <section class="contenedor">
         <div class="tipo-sangre"> A+    
        <div class="info-hover">
         <strong>Nivel actual:</strong> 45%<br>
@@ -111,10 +111,95 @@
             <strong>Demanda:</strong> Muy alta
         </div>
     </div>
-</div>
+  </section>
+ </section>
 
 
 <!-- Proceso de extraccion de sangre -->
+<!-- Requisitos para donar -->
+<!-- Beneficios  -->
+
+
+
+
+
+ <!-- CONTACTO  -->
+
+        <section class="contact-section">
+            <h2>Contacto</h2>
+
+
+            <div class="contact-info">
+                <p><strong>Email:</strong> contacto@vidar.org</p>
+                <p><strong>Teléfono:</strong> +34 600 123 456</p>
+                <p><strong>Dirección:</strong> Calle Salud 45, Barcelona</p>
+            </div>
+
+
+            <form class="contact-form" id="contact-form-main">
+                <input type="text" id="contact-name" placeholder="Tu nombre" required>
+                <input type="email" id="contact-email" placeholder="Tu correo" required>
+                <textarea id="contact-message" placeholder="Tu mensaje" required></textarea>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+
+
+ <footer class="footer">
+        <p>© 2025 Vidar. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- AUTH MODAL -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+
+            <!-- Login Form -->
+            <div id="login-section">
+                <h2>Iniciar Sesión</h2>
+                <form id="form-login">
+                    <div class="form-group">
+                        <label>Usuario</label>
+                        <input type="text" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Entrar</button>
+                    <p class="switch-auth">¿No tienes cuenta? <a href="#" id="go-to-register">Regístrate</a></p>
+                </form>
+            </div>
+
+            <!-- Register Form -->
+            <div id="register-section" style="display:none;">
+                <h2>Registrarse</h2>
+                <form id="form-register">
+                    <div class="form-group">
+                        <label>Usuario</label>
+                        <input type="text" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Registrarse</button>
+                    <p class="switch-auth">¿Ya tienes cuenta? <a href="#" id="go-to-login">Inicia Sesión</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <script src="index.js?v=2"></script>
+</body>
+
+</html>
+
+
+
+
+
 
 
 
