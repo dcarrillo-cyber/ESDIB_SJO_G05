@@ -721,7 +721,7 @@ body {
 
    .hero_sangre p {
     text-align: justify;
-    background: rgb(254, 225, 225);
+    background: rgb(255, 255, 255);
     padding: 20px;
     border-radius: var(--radius);
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
@@ -783,7 +783,7 @@ transform: translateX(-50%) translateY(-5px);
 }
 
 
-.info-hover::after {
+.tipo-sangre.info-hover::after {
 content: "";
 position: absolute;
 top: 100%;
@@ -820,7 +820,7 @@ border-color: #b11226 transparent transparent transparent;
 
    .hero_medula p {
     text-align: justify;
-    background: #faebd6;
+    background: #ffffff;
     padding: 20px;
     border-radius: var(--radius);
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
@@ -829,28 +829,45 @@ border-color: #b11226 transparent transparent transparent;
      margin-bottom: 50px
 }
 
+.hero_medula h3 {
+    text-align: justify;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 20px;
+    border-radius: var(--radius);
+    margin: 20px auto;
+    max-width: 800px;
+     margin-bottom: 50px
+}
+
+
 
    /* Tipos de celulas */
 
-   .contenedor-medula {
+      .contenedor-medula {
 display: grid;
 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 gap: 20px;
 max-width: 800px;
 margin: 50px auto;
+background: transparent;
 }
 
+.tipo-medula img {
+  width: 100%;
+  max-width: 120px;
+  height: auto; 
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
 
 .tipo-medula {
 position: relative;
-background: white;
-border-radius: 12px;
-padding: 30px;
 text-align: center;
 font-size: 24px;
 font-weight: bold;
 cursor: pointer;
-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
  .tipo-medula .info-hover {
@@ -913,7 +930,7 @@ border-color: #F59D2A transparent transparent transparent;
 
    .hero_organos p {
     text-align: justify;
-    background: #e7fccf;
+    background: #ffffff;
     padding: 20px;
     border-radius: var(--radius);
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
@@ -952,7 +969,7 @@ border-color: #F59D2A transparent transparent transparent;
 
    .hero_leche p {
     text-align: justify;
-    background: #f8f2ea;
+    background: #ffffff;
     padding: 20px;
     border-radius: var(--radius);
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
@@ -986,7 +1003,7 @@ border-color: #F59D2A transparent transparent transparent;
 
    .hero_cordon p {
     text-align: justify;
-    background: #d3f1fe;
+    background: #ffffff;
     padding: 20px;
     border-radius: var(--radius);
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
