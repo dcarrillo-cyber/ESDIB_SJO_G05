@@ -740,22 +740,27 @@ grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
 gap: 20px;
 max-width: 800px;
 margin: 50px auto;
+background: transparent;
 }
 
 
 .tipo-sangre {
 position: relative;
-background: white;
-border-radius: 12px;
-padding: 30px;
 text-align: center;
-font-size: 24px;
-font-weight: bold;
 cursor: pointer;
-box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+background: transparent;
 }
 
-   .info-hover {
+.tipo-sangre img {
+  width: 100%;
+  max-width: 120px;
+  height: auto; 
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+.tipo-sangre .info-hover {
 position: absolute;
 bottom: 110%;
 left: 50%;
