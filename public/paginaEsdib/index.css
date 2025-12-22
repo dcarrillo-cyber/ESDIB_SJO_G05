@@ -983,13 +983,14 @@ border-color: #F59D2A transparent transparent transparent;
    DONACIÓN DE CORODÓN UMBILICAL
    ============================ */
 
-   /* HERO_LECHE */
+   /* HERO_CORDÓN */
 
    .hero_cordon{
     padding: 40px 20px;
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
+    align-items: center;
    }
 
    .hero_cordon h1{
@@ -1011,6 +1012,116 @@ border-color: #F59D2A transparent transparent transparent;
     max-width: 800px;
      margin-bottom: 50px
 }
+
+.hero_cordon img {
+  width: 100%;
+  max-width: 100%;
+  height: auto; 
+  display: block;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+/* CARTAS INFORMATIVAS */
+
+
+.contenedor-cordon {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  width: 90%;
+  max-width: 100%;
+  padding: 20px;
+  margin: 50px auto;
+}
+
+.cartas-informativas {
+     background: white;
+     border-radius: 15px;
+     padding: 30px;
+     text-align: center;
+     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+     transition: all 0.4s ease;
+     position: relative;
+     overflow: hidden;
+     cursor: pointer;
+     border: 2px solid transparent; 
+     display: flex;
+     flex-direction: column; 
+     align-items: center;
+     justify-content: center;
+     min-height: 350px;
+}
+
+.cartas-informativas:hover {
+  border-color:  #74CBF4;
+  transform: translateY(-5px);
+}
+
+/* Contenedor del Icono e Imagen */
+        .iconos-cordon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: transform 0.4s ease;
+        }
+
+        .iconos-cordon img {
+            width: 70%;
+            height: auto;
+                }
+
+/* Títulos */
+        .titulo-cartas {
+            font-weight: bold;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            margin: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Contenido Oculto */
+        .contenido-cartas {
+            opacity: 0;
+            max-height: 0;
+            transition: all 0.5s ease;
+            text-align: left;
+            margin-top: 25px;
+        }
+
+        .contenido-cartas h3 {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+        }
+
+        .contenido-cartas h5 {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #666;
+            line-height: 1.5;
+            background-color: white;
+        }
+
+        /* Efecto Hover: Mostrar contenido */
+        .cartas-informativas:hover .contenido-cartas {
+            opacity: 1;
+            max-height: 440px; 
+        }
+
+        .cartas-informativas:hover .iconos-cordon {
+            transform: scale(0.8);
+            margin-bottom: 10px;
+        }
+
+        .cartas-informativas:hover .titulo-cartas {
+            font-size: 1.1rem;
+        }
 
 
 
