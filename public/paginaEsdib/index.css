@@ -795,12 +795,31 @@ border-color: #b11226 transparent transparent transparent;
 }
 
 
+ /* PROCESO_SANGRE */
+
+ .proceso-sangre{
+    max-height: 1120px;
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+ }
+
+ .proceso.sangre{
+    text-align: center;
+    margin-top: 40px;
+ }
+
+
 
 /* ============================
    DONACIÓN DE MEDULA ÓSEA
    ============================ */
 
-   /* HERO_SANGRE */
+   /* HERO_MEDULA */
 
    .hero_medula{
     padding: 40px 20px;
@@ -942,6 +961,126 @@ border-color: #F59D2A transparent transparent transparent;
 
    /* Lista de espera transplantes */
 
+     .grafico-organos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.organo-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.ilustracion {
+  width: 90px;
+  text-align: center;
+}
+
+.ilustracion img {
+  width: 100%;
+}
+
+.contenedor-barra {
+  flex-grow: 1;
+}
+
+.barra {
+  height: 40px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  color: white;
+  font-weight: bold;
+  transition: width 1s ease-in-out; /* Esta es la animación */
+  width: 45px; /* Ancho inicial */
+}
+
+/* Colores y anchos finales al pasar el ratón */
+.rinon-barra { background-color: #5a7ea6; }
+.higado-barra { background-color: #6c8c63; }
+
+/* Definimos el crecimiento proporcional */
+.organo-item:hover .rinon-barra {
+  width: 90%; /* Riñón crece mucho */
+}
+
+.organo-item:hover .higado-barra {
+  width: 50%; /* Hígado crece proporcionalmente menos */
+}
+
+/* Mostrar la cifra solo al crecer */
+.cifra {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.organo-item:hover .cifra {
+  opacity: 1;
+}
+
+/* PREGUNTAS FRECUENTES */
+
+.preguntas-frecuentes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 40px; 
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.caja-info {
+  border-left: 5px solid #91C25A;
+  padding: 25px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.preguntas-frecuentes h3{
+    font-weight: 600;
+    text-align: justify;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.preguntas-frecuentes h4{
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.2;
+    text-align: justify;
+    margin: 10px 0;
+}
+
+.preguntas-frecuentes li{
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    line-height: 1;
+    text-align: justify;
+}
+
+.preguntas-frecuentes ul{
+    margin-bottom: 2px;
+    margin-top: 2px;
+    text-align: justify;
+}
+
+@media (max-width: 768px) {
+  .preguntas-frecuentes {
+    grid-template-columns: 1fr;
+  }
+}
    
 
 
