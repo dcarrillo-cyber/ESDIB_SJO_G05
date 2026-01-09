@@ -799,7 +799,7 @@ border-color: #b11226 transparent transparent transparent;
 
  .proceso-sangre{
     max-height: 1120px;
-    width: 75%;
+    width: 85%;
     margin: 0 auto;
     margin-top: 60px;
     display: flex;
@@ -808,11 +808,62 @@ border-color: #b11226 transparent transparent transparent;
     position: relative;
  }
 
- .proceso.sangre{
-    text-align: center;
-    margin-top: 40px;
- }
 
+ /* BENEFICIOS Y REQUISITOS -SANGRE- */
+
+.beneficios-requsitos {
+  display: grid;
+  grid-template-columns: 1fr; 
+  gap: 20px; 
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.caja-info-sangre {
+  border-left: 5px solid #b11226;
+  padding: 25px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.beneficios-requsitos h3{
+    font-weight: 600;
+    text-align: justify;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.beneficios-requsitos h4{
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.2;
+    text-align: justify;
+    margin: 10px 0;
+}
+
+.beneficios-requsitos  li{
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    line-height: 1.2;
+    text-align: justify;
+}
+
+@media (min-width: 769px) {
+  .beneficios-requsitos {
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px;
+    margin: 60px auto;
+    padding: 20px;
+  }
+}
 
 
 /* ============================
@@ -924,6 +975,86 @@ border-color: #F59D2A transparent transparent transparent;
 }
 
 
+   /* PROCESO DONACIÓN MEDULA */
+
+.proceso-medula-img{
+    max-height: 1120px;
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+ }
+
+.proceso-medula h3{
+   text-align: center;
+   font-size: 18px;
+   font-weight: 600;
+   margin-top: 0;
+}
+
+.proceso-medula h2{
+   text-align: center;
+}
+
+
+  /* BENEFICIOS Y REQUISITOS -MEDULA- */
+
+.beneficios-requsitos-medula {
+  display: grid;
+  grid-template-columns: 1fr; 
+  gap: 20px; 
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.caja-info-medula {
+  border-left: 5px solid #F59D2A;
+  padding: 25px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.beneficios-requsitos-medula h3{
+    font-weight: 600;
+    text-align: justify;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.beneficios-requsitos-medula h4{
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.2;
+    text-align: justify;
+    margin: 10px 0;
+}
+
+.beneficios-requsitos-medula  li{
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    line-height: 1.2;
+    text-align: justify;
+}
+
+@media (min-width: 769px) {
+  .beneficios-requsitos-medula {
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px;
+    margin: 60px auto;
+    padding: 20px;
+  }
+}
 
 /* ============================
    DONACIÓN DE ORGANOS
@@ -976,7 +1107,7 @@ border-color: #F59D2A transparent transparent transparent;
 }
 
 .ilustracion {
-  width: 90px;
+  width: 100px;
   text-align: center;
 }
 
