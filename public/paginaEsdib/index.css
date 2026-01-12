@@ -809,9 +809,59 @@ border-color: #b11226 transparent transparent transparent;
  }
 
 
+ .donacion-container {
+  position: relative;
+  width: 100%;
+  max-width: 200px; /* Ajusta según el tamaño de tu ilustración */
+  margin: 0 auto;
+}
+
+.persona-img {
+  width: 100%;
+  display: block;
+}
+
+.punto-interactivo {
+  position: absolute;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.punto-interactivo:hover {
+  transform: scale(1.1); /* Efecto de agrandado al pasar el mouse */
+}
+
+/* Estilo de la carta de información (Oculta por defecto) */
+.info-card {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: 120%; /* Aparece arriba del icono */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  background: white;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+/* Mostrar la carta al pasar el mouse */
+.punto-interactivo:hover .info-card {
+  visibility: visible;
+  opacity: 1;
+}
+
+.icono {
+  width: 50px; /* Ajusta el tamaño de tus iconos */
+  height: auto;
+}
+
  /* BENEFICIOS Y REQUISITOS -SANGRE- */
 
-.beneficios-requsitos {
+.beneficios-requsitos-sangre {
   display: grid;
   grid-template-columns: 1fr; 
   gap: 20px; 
@@ -832,14 +882,14 @@ border-color: #b11226 transparent transparent transparent;
   text-align: left;
 }
 
-.beneficios-requsitos h3{
+.beneficios-requsitos-sangre h3{
     font-weight: 600;
     text-align: justify;
     margin-bottom: 10px;
     margin-top: 0;
 }
 
-.beneficios-requsitos h4{
+.beneficios-requsitos-sangre h4{
     font-size: 15px;
     font-weight: 300;
     line-height: 1.2;
@@ -847,7 +897,7 @@ border-color: #b11226 transparent transparent transparent;
     margin: 10px 0;
 }
 
-.beneficios-requsitos  li{
+.beneficios-requsitos-sangre  li{
     font-size: 14px;
     font-weight: 400;
     margin-bottom: 10px;
@@ -857,7 +907,7 @@ border-color: #b11226 transparent transparent transparent;
 }
 
 @media (min-width: 769px) {
-  .beneficios-requsitos {
+  .beneficios-requsitos-sangre {
     grid-template-columns: 1fr 1fr; 
     gap: 40px;
     margin: 60px auto;
@@ -963,7 +1013,7 @@ transform: translateX(-50%) translateY(-5px);
 }
 
 
-.info-hover::after {
+.tipo-medula .info-hover::after {
 content: "";
 position: absolute;
 top: 100%;
@@ -1156,7 +1206,7 @@ border-color: #F59D2A transparent transparent transparent;
 
 /* PREGUNTAS FRECUENTES */
 
-.preguntas-frecuentes {
+.beneficios-requsitos-organos {
   display: grid;
   grid-template-columns: repeat(2, 1fr); 
   gap: 40px; 
@@ -1165,7 +1215,7 @@ border-color: #F59D2A transparent transparent transparent;
   padding: 20px;
 }
 
-.caja-info {
+.caja-info-organos {
   border-left: 5px solid #91C25A;
   padding: 25px;
   border-radius: 8px;
@@ -1177,14 +1227,14 @@ border-color: #F59D2A transparent transparent transparent;
   text-align: left;
 }
 
-.preguntas-frecuentes h3{
+.beneficios-requsitos-organos h3{
     font-weight: 600;
     text-align: justify;
     margin-bottom: 10px;
     margin-top: 0;
 }
 
-.preguntas-frecuentes h4{
+.beneficios-requsitos-organos h4{
     font-size: 15px;
     font-weight: 300;
     line-height: 1.2;
@@ -1192,24 +1242,20 @@ border-color: #F59D2A transparent transparent transparent;
     margin: 10px 0;
 }
 
-.preguntas-frecuentes li{
-    font-size: 14px;
-    font-weight: 600;
+.beneficios-requsitos-organos li{
+    font-weight: 400;
     margin-bottom: 10px;
     margin-top: 10px;
-    line-height: 1;
+    line-height: 1.2;
     text-align: justify;
 }
 
-.preguntas-frecuentes ul{
-    margin-bottom: 2px;
-    margin-top: 2px;
-    text-align: justify;
-}
-
-@media (max-width: 768px) {
-  .preguntas-frecuentes {
-    grid-template-columns: 1fr;
+@media (min-width: 769px) {
+  .beneficios-requsitos-organos {
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px;
+    margin: 60px auto;
+    padding: 20px;
   }
 }
    
@@ -1246,6 +1292,62 @@ border-color: #F59D2A transparent transparent transparent;
     margin: 20px auto;
     max-width: 800px;
      margin-bottom: 50px
+}
+
+  /* BENEFICIOS Y REQUISITOS -MEDULA- */
+
+.beneficios-requsitos-leche {
+  display: grid;
+  grid-template-columns: 1fr; 
+  gap: 20px; 
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
+.caja-info-leche {
+  border-left: 5px solid #e8cfae;
+  padding: 25px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.beneficios-requsitos-leche h3{
+    font-weight: 600;
+    text-align: justify;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.beneficios-requsitos-leche h4{
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.2;
+    text-align: justify;
+    margin: 10px 0;
+}
+
+.beneficios-requsitos-leche li{
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    line-height: 1.2;
+    text-align: justify;
+}
+
+@media (min-width: 769px) {
+  .beneficios-requsitos-leche {
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px;
+    margin: 60px auto;
+    padding: 20px;
+  }
 }
 
 
@@ -1292,106 +1394,54 @@ border-color: #F59D2A transparent transparent transparent;
   transition: transform 0.3s ease;
 }
 
-/* CARTAS INFORMATIVAS */
+  /* BENEFICIOS Y REQUISITOS -MEDULA- */
 
-
-.contenedor-cordon {
+.beneficios-requsitos-cordon {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 20px;
-  width: 90%;
-  max-width: 100%;
+  grid-template-columns: 1fr; 
+  gap: 20px; 
+  max-width: 1000px;
+  margin: 60px auto;
   padding: 20px;
-  margin: 50px auto;
 }
 
-.cartas-informativas {
-     background: white;
-     border-radius: 15px;
-     padding: 30px;
-     text-align: center;
-     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-     transition: all 0.4s ease;
-     position: relative;
-     overflow: hidden;
-     cursor: pointer;
-     border: 2px solid transparent; 
-     display: flex;
-     flex-direction: column; 
-     align-items: center;
-     justify-content: center;
-     min-height: 350px;
+.caja-info-cordon {
+  border-left: 5px solid #74CBF4;
+  padding: 25px;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
 }
 
-.cartas-informativas:hover {
-  border-color:  #74CBF4;
-  transform: translateY(-5px);
+.beneficios-requsitos-cordon h3{
+    font-weight: 600;
+    text-align: justify;
+    margin-bottom: 10px;
+    margin-top: 0;
 }
 
-/* Contenedor del Icono e Imagen */
-        .iconos-cordon {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            transition: transform 0.4s ease;
-        }
+.beneficios-requsitos-cordon h4{
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.2;
+    text-align: justify;
+    margin: 10px 0;
+}
 
-        .iconos-cordon img {
-            width: 70%;
-            height: auto;
-                }
+@media (min-width: 769px) {
+  .beneficios-requsitos-cordon {
+    grid-template-columns: 1fr 1fr; 
+    gap: 40px;
+    margin: 60px auto;
+    padding: 20px;
+  }
+}
 
-/* Títulos */
-        .titulo-cartas {
-            font-weight: bold;
-            font-size: 1.4rem;
-            letter-spacing: 1px;
-            margin: 0;
-            transition: opacity 0.3s ease;
-        }
 
-        /* Contenido Oculto */
-        .contenido-cartas {
-            opacity: 0;
-            max-height: 0;
-            transition: all 0.5s ease;
-            text-align: left;
-            margin-top: 25px;
-        }
-
-        .contenido-cartas h3 {
-            font-size: 1rem;
-            margin-bottom: 10px;
-            padding-bottom: 5px;
-        }
-
-        .contenido-cartas h5 {
-            margin-top: 15px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #666;
-            line-height: 1.5;
-            background-color: white;
-        }
-
-        /* Efecto Hover: Mostrar contenido */
-        .cartas-informativas:hover .contenido-cartas {
-            opacity: 1;
-            max-height: 440px; 
-        }
-
-        .cartas-informativas:hover .iconos-cordon {
-            transform: scale(0.8);
-            margin-bottom: 10px;
-        }
-
-        .cartas-informativas:hover .titulo-cartas {
-            font-size: 1.1rem;
-        }
 
 
 
