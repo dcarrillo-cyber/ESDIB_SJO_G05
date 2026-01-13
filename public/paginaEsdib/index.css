@@ -795,69 +795,220 @@ border-color: #b11226 transparent transparent transparent;
 }
 
 
- /* PROCESO_SANGRE */
+/* =============================== WRAPPER ================================ */
+.ilustracion-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 0;
+  overflow: hidden;
+  margin-top: none;
+  margin-bottom: none;
+}
 
- .proceso-sangre{
-    max-height: 1120px;
-    width: 85%;
-    margin: 0 auto;
-    margin-top: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
- }
-
-
- .donacion-container {
+/* =============================== ILUSTRACIÓN BASE ================================ */
+.ilustracion {
   position: relative;
-  width: 100%;
-  max-width: 200px; /* Ajusta según el tamaño de tu ilustración */
-  margin: 0 auto;
+  width: 700px;
+  height: 600px;
+  /* Importante para que el escalado sea desde el centro */
+  transform-origin: center center; 
 }
 
-.persona-img {
-  width: 100%;
-  display: block;
-}
-
-.punto-interactivo {
+/* =============================== IMAGEN CENTRAL ================================ */
+.centro {
   position: absolute;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.punto-interactivo:hover {
-  transform: scale(1.1); /* Efecto de agrandado al pasar el mouse */
-}
-
-/* Estilo de la carta de información (Oculta por defecto) */
-.info-card {
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  bottom: 120%; /* Aparece arriba del icono */
+  height: auto;
+  /* CORRECCIÓN: Añadidas unidades correctas */
+  width: 800px; 
+  max-width: 900%; 
+  top: 55%; 
   left: 50%;
-  transform: translateX(-50%);
-  width: 200px;
-  background: white;
-  border-radius: 8px;
-  padding: 15px;
-  box-shadow: 0px 4px 15px rgba(0,0,0,0.2);
-  transition: opacity 0.3s ease;
-  z-index: 10;
+  transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
-/* Mostrar la carta al pasar el mouse */
-.punto-interactivo:hover .info-card {
-  visibility: visible;
-  opacity: 1;
+/* =============================== ICONOS ================================ */
+.icon-wrapper {
+  position: absolute;
+  z-index: 3;
+  width: 110px; /* Tamaño del contenedor del icono */
+  text-align: center;
 }
 
-.icono {
-  width: 50px; /* Ajusta el tamaño de tus iconos */
+.icon-wrapper:hover {
+  z-index: 999; 
+}
+
+.icon {
+  width: 130px;
   height: auto;
 }
+
+/* POSICIONES  (Distribución circular SANGRE) */
+/* 1. Hospital (Abajo Izquierda) */
+.icon-1 { 
+    top: 360px; 
+    right: 220px; 
+}
+
+/* 2. DNI (Arriba Izquierda) */
+.icon-2 { 
+    top: 190px; 
+    right: 150px; 
+}
+
+/* 3. Cuestionario / Papel (Arriba Centro) */
+.icon-3 { 
+    bottom:390px;
+    left: 110%; 
+    transform: translateX(-50%); 
+}
+
+/* 4. Brazo Extracción (Arriba Derecha) */
+.icon-4 { 
+    top: 210px; 
+    left: 160px; 
+}
+
+/* 5. Comida / Reloj (Abajo Derecha) */
+.icon-5 { 
+    top: 340px; 
+    left: 220px; 
+}
+
+/* =============================== TOOLTIP ================================ */
+.tooltip {
+  z-index: 1;  
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  background: #b11226;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: #b11226 transparent transparent transparent;
+}
+
+.icon-wrapper:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+/* =============================== RESPONSIVE ================================ */
+
+@media (max-width: 1100px) {
+  .ilustracion { transform: scale(0.8); }
+  .ilustracion-wrapper { height: 500px; }
+}
+
+@media (max-width: 850px) {
+  .ilustracion { transform: scale(0.6); }
+  .ilustracion-wrapper { height: 400px; }
+}
+
+@media (max-width: 600px) {
+  .ilustracion { transform: scale(0.45); }
+  .ilustracion-wrapper { height: 300px; }
+}
+
+
+/* POSICIONES  (Distribución circular LECHE) */
+/* 1. Hospital (Abajo Izquierda) */
+.icon-leche-1 { 
+    top: 360px; 
+    right: 250px; 
+}
+
+/* 2. DNI (Arriba Izquierda) */
+.icon-leche-2 { 
+    top: 210px; 
+    right: 210px; 
+}
+
+/* 3. Cuestionario / Papel (Arriba Centro) */
+.icon--leche-3 { 
+    bottom:400px;
+    right: 15%; 
+    transform: translateX(-50%); 
+}
+
+/* 4. Brazo Extracción (Arriba Derecha) */
+.icon-leche-4 { 
+    top: 230px; 
+    left: 210px; 
+}
+
+/* 5. Comida / Reloj (Abajo Derecha) */
+.icon-leche-5 { 
+    bottom:400px;
+    left: 180%; 
+    transform: translateX(-50%); 
+    width: 80px;
+}
+
+/* 5. Comida / Reloj (Abajo Derecha) */
+.icon-leche-6 { 
+    top: 360px; 
+    left: 250px; 
+    width: 100px;
+}
+
+/* =============================== TOOLTIP -LECHE ================================ */
+.tooltip-leche {
+  z-index: 1;  
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  background: #e8cfae;
+  color: #3c352b;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.tooltip-leche::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: #e8cfae transparent transparent transparent;
+}
+
+.icon-wrapper:hover .tooltip-leche {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
+}
+
+
+
 
  /* BENEFICIOS Y REQUISITOS -SANGRE- */
 
@@ -866,7 +1017,7 @@ border-color: #b11226 transparent transparent transparent;
   grid-template-columns: 1fr; 
   gap: 20px; 
   max-width: 1000px;
-  margin: 40px auto;
+  margin: 10px auto;
   padding: 20px;
 }
 
@@ -880,6 +1031,7 @@ border-color: #b11226 transparent transparent transparent;
   display: flex;
   flex-direction: column;
   text-align: left;
+  margin-top: none;
 }
 
 .beneficios-requsitos-sangre h3{
@@ -1299,9 +1451,9 @@ border-color: #F59D2A transparent transparent transparent;
 .beneficios-requsitos-leche {
   display: grid;
   grid-template-columns: 1fr; 
-  gap: 20px; 
+  gap: 10px; 
   max-width: 1000px;
-  margin: 60px auto;
+  margin: 15px auto;
   padding: 20px;
 }
 
@@ -1344,11 +1496,22 @@ border-color: #F59D2A transparent transparent transparent;
 @media (min-width: 769px) {
   .beneficios-requsitos-leche {
     grid-template-columns: 1fr 1fr; 
-    gap: 40px;
-    margin: 60px auto;
+    gap: 20px;
+    margin: 20px auto;
     padding: 20px;
   }
 }
+
+
+.composicion-leche{
+    max-height: 1120px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+ }
+
 
 
 /* ============================
