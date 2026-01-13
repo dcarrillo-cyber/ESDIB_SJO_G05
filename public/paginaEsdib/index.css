@@ -798,32 +798,31 @@ border-color: #b11226 transparent transparent transparent;
 /* =============================== WRAPPER ================================ */
 .ilustracion-wrapper {
   width: 100%;
+  max-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 100px 0;
+  padding: 60px 0;
   overflow: hidden;
-  margin-top: none;
-  margin-bottom: none;
 }
 
 /* =============================== ILUSTRACIÓN BASE ================================ */
 .ilustracion {
   position: relative;
-  width: 700px;
+  width: 780px;
   height: 600px;
-  /* Importante para que el escalado sea desde el centro */
   transform-origin: center center; 
+  aspect-ratio: 4 / 3;
+  margin: 0 auto;
 }
 
 /* =============================== IMAGEN CENTRAL ================================ */
 .centro {
   position: absolute;
   height: auto;
-  /* CORRECCIÓN: Añadidas unidades correctas */
-  width: 800px; 
-  max-width: 900%; 
-  top: 55%; 
+  width: 260px; 
+  max-width: 1220px; 
+  top: 65%; 
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
@@ -842,40 +841,40 @@ border-color: #b11226 transparent transparent transparent;
 }
 
 .icon {
-  width: 130px;
+  width: 100%;
   height: auto;
 }
 
 /* POSICIONES  (Distribución circular SANGRE) */
 /* 1. Hospital (Abajo Izquierda) */
 .icon-1 { 
-    top: 360px; 
-    right: 220px; 
+    top: 400px; 
+    left: 65px; 
 }
 
 /* 2. DNI (Arriba Izquierda) */
 .icon-2 { 
-    top: 190px; 
-    right: 150px; 
+    top: 200px; 
+    left: 135px; 
 }
 
 /* 3. Cuestionario / Papel (Arriba Centro) */
 .icon-3 { 
-    bottom:390px;
-    left: 110%; 
+    bottom:430px;
+    left: 55%; 
     transform: translateX(-50%); 
 }
 
 /* 4. Brazo Extracción (Arriba Derecha) */
 .icon-4 { 
-    top: 210px; 
-    left: 160px; 
+    top: 220px; 
+    left: 545px; 
 }
 
 /* 5. Comida / Reloj (Abajo Derecha) */
 .icon-5 { 
-    top: 340px; 
-    left: 220px; 
+    top: 390px; 
+    left: 645px; 
 }
 
 /* =============================== TOOLTIP ================================ */
@@ -915,61 +914,141 @@ border-color: #b11226 transparent transparent transparent;
 
 /* =============================== RESPONSIVE ================================ */
 
-@media (max-width: 1100px) {
+@media (max-width: 1220px) {
   .ilustracion { transform: scale(0.8); }
-  .ilustracion-wrapper { height: 500px; }
+  .ilustracion-wrapper { height: 650px; }
 }
 
 @media (max-width: 850px) {
   .ilustracion { transform: scale(0.6); }
-  .ilustracion-wrapper { height: 400px; }
+  .ilustracion-wrapper { height: 500px; }
 }
 
 @media (max-width: 600px) {
   .ilustracion { transform: scale(0.45); }
-  .ilustracion-wrapper { height: 300px; }
+  .ilustracion-wrapper { height: 350px; }
+}
+
+
+/* POSICIONES  (Distribución circular LECHE) */
+/* 1. Hospital (Abajo Izquierda) */
+.icon-medula-1 { 
+    top: 500px; 
+    left: 50px; 
+}
+
+/* 2. DNI (Arriba Izquierda) */
+.icon-medula-2 { 
+    top: 300px; 
+    left: 60px; 
+}
+
+/* 3. Cuestionario / Papel (Arriba Centro) */
+.icon-medula-3 { 
+    top:80px;
+    left: 100px; 
+    width: 100px;
+}
+
+/* 4. Brazo Extracción (Arriba Derecha) */
+.icon-medula-4 { 
+    top: 50px; 
+    left: 325px; 
+}
+
+/* 5. Comida / Reloj (Abajo Derecha) */
+.icon-medula-5 { 
+    top: 120px; 
+    left: 700px; 
+    transform: translateX(-50%); 
+}
+
+/* 5. Comida / Reloj (Abajo Derecha) */
+.icon-medula-6 { 
+    top: 290px; 
+    left: 600px; 
+}
+
+/* 5. Comida / Reloj (Abajo Derecha) */
+.icon-medula-7 { 
+    top: 500px; 
+    left: 655px; 
+}
+
+/* =============================== TOOLTIP -LECHE ================================ */
+.tooltip-medula {
+  z-index: 1;  
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  background: #e8cfae;
+  color: #3c352b;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 15px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.tooltip-medula::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 8px;
+  border-style: solid;
+  border-color: #e8cfae transparent transparent transparent;
+}
+
+.icon-wrapper:hover .tooltip-medula {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-10px);
 }
 
 
 /* POSICIONES  (Distribución circular LECHE) */
 /* 1. Hospital (Abajo Izquierda) */
 .icon-leche-1 { 
-    top: 360px; 
-    right: 250px; 
+    top: 460px; 
+    left: 50px; 
 }
 
 /* 2. DNI (Arriba Izquierda) */
 .icon-leche-2 { 
-    top: 210px; 
-    right: 210px; 
+    top: 300px; 
+    left: 80px; 
 }
 
 /* 3. Cuestionario / Papel (Arriba Centro) */
 .icon--leche-3 { 
-    bottom:400px;
-    right: 15%; 
+    top:100px;
+    left: 25%; 
     transform: translateX(-50%); 
 }
 
 /* 4. Brazo Extracción (Arriba Derecha) */
 .icon-leche-4 { 
-    top: 230px; 
-    left: 210px; 
+    top: 320px; 
+    left: 600px; 
 }
 
 /* 5. Comida / Reloj (Abajo Derecha) */
 .icon-leche-5 { 
-    bottom:400px;
-    left: 180%; 
+    top: 90px; 
+    left: 660px; 
+    width: 100px;
     transform: translateX(-50%); 
-    width: 80px;
 }
 
 /* 5. Comida / Reloj (Abajo Derecha) */
 .icon-leche-6 { 
-    top: 360px; 
-    left: 250px; 
-    width: 100px;
+    top: 440px; 
+    left: 625px; 
 }
 
 /* =============================== TOOLTIP -LECHE ================================ */
@@ -1297,9 +1376,9 @@ border-color: #F59D2A transparent transparent transparent;
      .grafico-organos {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-width: 600px;
-  margin: 20px auto;
+  gap: 40px;
+  max-width: 800px;
+  margin: 40px auto;
 }
 
 .organo-item {
@@ -1308,17 +1387,20 @@ border-color: #F59D2A transparent transparent transparent;
   gap: 20px;
 }
 
-.ilustracion {
-  width: 100px;
+.ilustracion-organo {
+  width: 250px;
   text-align: center;
+  flex-shrink: 0;
 }
 
-.ilustracion img {
-  width: 100%;
+.ilustracion-organo img {
+  width: 45%;
 }
 
 .contenedor-barra {
   flex-grow: 1;
+  background-color: #f0f0f0; /* Fondo sutil para ver el camino de la barra */
+  border-radius: 7px;
 }
 
 .barra {
@@ -1339,17 +1421,18 @@ border-color: #F59D2A transparent transparent transparent;
 
 /* Definimos el crecimiento proporcional */
 .organo-item:hover .rinon-barra {
-  width: 90%; /* Riñón crece mucho */
+  width: 80%; /* Riñón crece mucho */
 }
 
 .organo-item:hover .higado-barra {
-  width: 50%; /* Hígado crece proporcionalmente menos */
+  width: 30%; /* Hígado crece proporcionalmente menos */
 }
 
 /* Mostrar la cifra solo al crecer */
 .cifra {
   opacity: 0;
   transition: opacity 0.5s;
+  padding-right: 10px;
 }
 
 .organo-item:hover .cifra {
