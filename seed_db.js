@@ -1,6 +1,12 @@
 import { MongoClient, ObjectId } from 'mongodb';
+import dotenv from 'dotenv';
+dotenv.config();
 
-const uri = 'mongodb+srv://imartinezg60:img18102003@bubu.57vc7.mongodb.net/';
+const uri = process.env.MONGODB_URI;
+if (!uri) {
+    console.error("Error: MONGODB_URI no definida en .env");
+    process.exit(1);
+}
 const client = new MongoClient(uri);
 
 const TIPOS_DATA = [
