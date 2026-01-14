@@ -122,14 +122,16 @@ document.addEventListener('DOMContentLoaded', () => {
             if (res.ok) {
                 localStorage.setItem('user', JSON.stringify(result.user));
                 if (authModal) authModal.style.display = 'none';
-                alert('Bienvenido ' + result.user.username);
+                // --- CUSTOM ALERT LOGIC ---
+                showAlert('Bienvenido ' + result.user.username, 'success');
+
                 checkSession();
                 formLogin.reset();
             } else {
-                alert(result.error || 'Error al iniciar sesión');
+                showAlert(result.error || 'Error al iniciar sesión', 'error');
             }
         } catch (err) {
-            alert('Error de conexión');
+            showAlert('Error de conexión', 'error');
         } finally {
             submitBtn.disabled = false;
             submitBtn.textContent = originalText;
@@ -155,25 +157,32 @@ document.addEventListener('DOMContentLoaded', () => {
             const result = await res.json();
 
             if (res.ok) {
-                alert('Registro exitoso. Ahora puedes iniciar sesión.');
+                showAlert('Registro exitoso. Ahora puedes iniciar sesión.', 'success');
                 showLogin();
                 formRegister.reset();
             } else {
-                alert(result.error || 'Error al registrarse');
+                showAlert(result.error || 'Error al registrarse', 'error');
             }
         } catch (err) {
-            alert('Error de conexión');
+            showAlert('Error de conexión', 'error');
         } finally {
             submitBtn.disabled = false;
             submitBtn.textContent = originalText;
         }
     });
 
-    if (logoutBtn) logoutBtn.addEventListener('click', (e) => {
+    if (logoutBtn) logoutBtn.addEventListener('click', async (e) => {
         e.preventDefault();
+        try {
+            await fetch('/api/auth/logout', { method: 'POST', credentials: 'include' });
+        } catch (err) {
+            console.error('Logout error', err);
+        }
         localStorage.removeItem('user');
         checkSession();
-        alert('Has cerrado sesión');
+        showAlert('Has cerrado sesión', 'success');
+        // Optional: Reload to ensure clean state
+        setTimeout(() => window.location.reload(), 1000);
     });
 
     function checkSession() {
@@ -215,15 +224,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (res.ok) {
-                    alert('Mensaje enviado correctamente');
+                    showAlert('Mensaje enviado correctamente', 'success');
                     contactForm.reset();
                 } else {
                     const errorData = await res.json();
-                    alert('Error al enviar: ' + (errorData.error || 'Desconocido'));
+                    showAlert('Error al enviar: ' + (errorData.error || 'Desconocido'), 'error');
                 }
             } catch (err) {
                 console.error(err);
-                alert('Error de conexión al enviar mensaje');
+                showAlert('Error de conexión al enviar mensaje', 'error');
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.textContent = originalText;
@@ -260,7 +269,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function createNewsSlide(item) {
-        const dateStr = item.fecha ? new Date(item.fecha).toLocaleDateString() : '';
+        // Fix for Timezone issue: treat stored date as UTC
+        let dateStr = 'Fecha no disponible';
+        if (item.fecha) {
+            const d = new Date(item.fecha);
+            if (!isNaN(d.getTime())) {
+                const day = String(d.getUTCDate()).padStart(2, '0');
+                const month = String(d.getUTCMonth() + 1).padStart(2, '0');
+                const year = d.getUTCFullYear();
+                dateStr = `${day}/${month}/${year}`;
+            }
+        }
         const title = escapeHtml(item.titulo);
         const img = item.imagen || 'ilustraciones_logos/sang.svg';
         const content = escapeHtml(item.contenido);
@@ -269,7 +288,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="swiper-slide">
             <div class="noticias">
                 <h3>${title}</h3>
-                <img src="${img}" alt="${title}" loading="lazy" style="will-change: transform;">
+                <img src="${img}" alt="${title}" loading="lazy" style="will-change: transform;" onerror="this.onerror=null;this.src='ilustraciones_logos/sang.svg';">
                 <p>${content}</p>
                 <p>${dateStr}</p>
                 <a href="#" class="saber-mas-btn1">Saber más</a>
@@ -284,4 +303,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     loadNews();
+
+    // --- CUSTOM ALERT HELPER ---
+    function showAlert(message, type = 'success') {
+        const existingAlert = document.getElementById('custom-alert');
+        if (existingAlert) existingAlert.remove();
+
+        const alertBox = document.createElement('div');
+        alertBox.id = 'custom-alert';
+        alertBox.className = `custom-alert ${type}`;
+
+        let iconHtml = '';
+        if (type === 'success') {
+            iconHtml = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`;
+        } else {
+            iconHtml = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`;
+        }
+
+        alertBox.innerHTML = `${iconHtml}<span class="custom-alert-message">${message}</span>`;
+        document.body.appendChild(alertBox);
+
+        requestAnimationFrame(() => {
+            alertBox.classList.add('show');
+        });
+
+        setTimeout(() => {
+            alertBox.classList.remove('show');
+            setTimeout(() => {
+                alertBox.remove();
+            }, 500);
+        }, 3000);
+    }
 });

@@ -243,34 +243,45 @@ body {
     align-items: center;
     transition: transform 0.3s;
     will-change: transform;
-    width: 60%;
+    width: 100%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
 
 .noticias:hover {
     transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .noticias h3 {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     margin-bottom: 15px;
     min-height: 3em;
     /* Align cards approx */
+    color: var(--primary-color);
+    line-height: 1.3;
 }
 
 .noticias img {
     width: 100%;
-    height: 180px;
+    height: 200px;
     object-fit: cover;
     border-radius: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .noticias p {
-    font-size: 0.9rem;
-    color: #444;
-    text-align: left;
-    margin-bottom: 10px;
+    font-size: 0.95rem;
+    color: #555;
+    text-align: justify;
+    line-height: 1.6;
+    margin-bottom: 20px;
     flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .saber-mas-btn1 {
@@ -294,18 +305,36 @@ body {
 .swiper-button-prev,
 .swiper-button-next {
     color: transparent !important;
-    /* Safety text hide */
-    background: var(--primary-color);
-    width: 45px;
-    height: 45px;
+    background: white;
+    /* Clean white background */
+    width: 40px;
+    /* Smaller size */
+    height: 40px;
     border-radius: 50%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow */
     transition: all 0.3s ease;
+    border: 1px solid #eee;
+
+    /* Positioning */
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 0;
 
     /* Flex alignment for SVG */
     display: flex;
     align-items: center;
     justify-content: center;
+    z-index: 20;
+}
+
+.swiper-button-prev {
+    left: 10px;
+    /* Push bit inwards */
+}
+
+.swiper-button-next {
+    right: 10px;
 }
 
 /* Hide default Swiper icons */
@@ -317,17 +346,30 @@ body {
 /* Style SVG Icons */
 .swiper-button-prev svg,
 .swiper-button-next svg {
-    width: 24px;
-    height: 24px;
-    stroke: white;
+    width: 20px;
+    height: 20px;
+    stroke: #333;
+    /* Dark grey arrow by default */
+    stroke-width: 2.5;
+    transition: all 0.3s ease;
 }
 
 .swiper-button-prev:hover,
 .swiper-button-next:hover {
-    background: var(--primary-hover);
-    transform: scale(1.1);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 5px 15px rgba(187, 7, 16, 0.4);
+    transform: translateY(-50%) scale(1.1);
+    /* Keep vertical align */
 }
+
+.swiper-button-prev:hover svg,
+.swiper-button-next:hover svg {
+    stroke: white;
+    /* White arrow on hover */
+}
+
+
 
 .swiper-pagination-bullet-active {
     background-color: var(--primary-color);
@@ -440,7 +482,7 @@ body {
 .contact-info {
     text-align: center;
     margin-bottom: 30px;
-    
+
 }
 
 .contact-form {
@@ -701,25 +743,25 @@ body {
    DONACIÓN DE SANGRE
    ============================ */
 
-   /* HERO_SANGRE */
+/* HERO_SANGRE */
 
-   .hero_sangre{
+.hero_sangre {
     padding: 40px 20px;
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
-   }
+}
 
-   .hero_sangre h1{
+.hero_sangre h1 {
     font-size: 36px;
     font-weight: 900;
     margin-bottom: 20px;
     line-height: 1.2;
     color: var(--primary-color);
-     margin-bottom: 40px
-   }
+    margin-bottom: 40px
+}
 
-   .hero_sangre p {
+.hero_sangre p {
     text-align: justify;
     background: rgb(255, 255, 255);
     padding: 20px;
@@ -727,400 +769,416 @@ body {
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
     margin: 20px auto;
     max-width: 800px;
-     margin-bottom: 50px
+    margin-bottom: 50px
 }
 
 
 
-   /* Tipos de sangre */
+/* Tipos de sangre */
 
-   .contenedor {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-gap: 20px;
-max-width: 800px;
-margin: 50px auto;
-background: transparent;
+.contenedor {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    max-width: 800px;
+    margin: 50px auto;
+    background: transparent;
 }
 
 
 .tipo-sangre {
-position: relative;
-text-align: center;
-cursor: pointer;
-background: transparent;
+    position: relative;
+    text-align: center;
+    cursor: pointer;
+    background: transparent;
 }
 
 .tipo-sangre img {
-  width: 100%;
-  max-width: 120px;
-  height: auto; 
-  display: block;
-  margin: 0 auto;
-  transition: transform 0.3s ease;
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
 }
 
 .tipo-sangre .info-hover {
-position: absolute;
-bottom: 110%;
-left: 50%;
-transform: translateX(-50%);
-width: 220px;
-background: #b11226;
-color: white;
-padding: 15px;
-border-radius: 10px;
-font-size: 14px;
-opacity: 0;
-pointer-events: none;
-transition: opacity 0.3s ease, transform 0.3s ease;
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    background: #b11226;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 
 .tipo-sangre:hover .info-hover {
-opacity: 1;
-transform: translateX(-50%) translateY(-5px);
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
 }
 
 
 .tipo-sangre.info-hover::after {
-content: "";
-position: absolute;
-top: 100%;
-left: 50%;
-transform: translateX(-50%);
-border-width: 8px;
-border-style: solid;
-border-color: #b11226 transparent transparent transparent;
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: #b11226 transparent transparent transparent;
 }
 
 
 /* =============================== WRAPPER ================================ */
 .ilustracion-wrapper {
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 60px 0;
-  overflow: hidden;
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 0;
+    overflow: hidden;
 }
 
 /* =============================== ILUSTRACIÓN BASE ================================ */
 .ilustracion {
-  position: relative;
-  width: 780px;
-  height: 600px;
-  transform-origin: center center; 
-  aspect-ratio: 4 / 3;
-  margin: 0 auto;
+    position: relative;
+    width: 780px;
+    height: 600px;
+    transform-origin: center center;
+    aspect-ratio: 4 / 3;
+    margin: 0 auto;
 }
 
 /* =============================== IMAGEN CENTRAL ================================ */
 .centro {
-  position: absolute;
-  height: auto;
-  width: 260px; 
-  max-width: 1220px; 
-  top: 65%; 
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
+    position: absolute;
+    height: auto;
+    width: 260px;
+    max-width: 1220px;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
 /* =============================== ICONOS ================================ */
 .icon-wrapper {
-  position: absolute;
-  z-index: 3;
-  width: 110px; /* Tamaño del contenedor del icono */
-  text-align: center;
+    position: absolute;
+    z-index: 3;
+    width: 110px;
+    /* Tamaño del contenedor del icono */
+    text-align: center;
 }
 
 .icon-wrapper:hover {
-  z-index: 999; 
+    z-index: 999;
 }
 
 .icon {
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
 }
 
 /* POSICIONES  (Distribución circular SANGRE) */
 /* 1. Hospital (Abajo Izquierda) */
-.icon-1 { 
-    top: 400px; 
-    left: 65px; 
+.icon-1 {
+    top: 400px;
+    left: 65px;
 }
 
 /* 2. DNI (Arriba Izquierda) */
-.icon-2 { 
-    top: 200px; 
-    left: 135px; 
+.icon-2 {
+    top: 200px;
+    left: 135px;
 }
 
 /* 3. Cuestionario / Papel (Arriba Centro) */
-.icon-3 { 
-    bottom:430px;
-    left: 55%; 
-    transform: translateX(-50%); 
+.icon-3 {
+    bottom: 430px;
+    left: 55%;
+    transform: translateX(-50%);
 }
 
 /* 4. Brazo Extracción (Arriba Derecha) */
-.icon-4 { 
-    top: 220px; 
-    left: 545px; 
+.icon-4 {
+    top: 220px;
+    left: 545px;
 }
 
 /* 5. Comida / Reloj (Abajo Derecha) */
-.icon-5 { 
-    top: 390px; 
-    left: 645px; 
+.icon-5 {
+    top: 390px;
+    left: 645px;
 }
 
 /* =============================== TOOLTIP ================================ */
 .tooltip {
-  z-index: 1;  
-  position: absolute;
-  bottom: 110%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 300px;
-  background: #b11226;
-  color: white;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 15px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 1;
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    background: #b11226;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .tooltip::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 8px;
-  border-style: solid;
-  border-color: #b11226 transparent transparent transparent;
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: #b11226 transparent transparent transparent;
 }
 
 .icon-wrapper:hover .tooltip {
-  opacity: 1;
-  transform: translateX(-50%) translateY(-10px);
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
 }
 
 /* =============================== RESPONSIVE ================================ */
 
 @media (max-width: 1220px) {
-  .ilustracion { transform: scale(0.8); }
-  .ilustracion-wrapper { height: 650px; }
+    .ilustracion {
+        transform: scale(0.8);
+    }
+
+    .ilustracion-wrapper {
+        height: 650px;
+    }
 }
 
 @media (max-width: 850px) {
-  .ilustracion { transform: scale(0.6); }
-  .ilustracion-wrapper { height: 500px; }
+    .ilustracion {
+        transform: scale(0.6);
+    }
+
+    .ilustracion-wrapper {
+        height: 500px;
+    }
 }
 
 @media (max-width: 600px) {
-  .ilustracion { transform: scale(0.45); }
-  .ilustracion-wrapper { height: 350px; }
+    .ilustracion {
+        transform: scale(0.45);
+    }
+
+    .ilustracion-wrapper {
+        height: 350px;
+    }
 }
 
 
 /* POSICIONES  (Distribución circular LECHE) */
 /* 1. Hospital (Abajo Izquierda) */
-.icon-medula-1 { 
-    top: 500px; 
-    left: 50px; 
+.icon-medula-1 {
+    top: 500px;
+    left: 50px;
 }
 
 /* 2. DNI (Arriba Izquierda) */
-.icon-medula-2 { 
-    top: 300px; 
-    left: 60px; 
+.icon-medula-2 {
+    top: 300px;
+    left: 60px;
 }
 
 /* 3. Cuestionario / Papel (Arriba Centro) */
-.icon-medula-3 { 
-    top:80px;
-    left: 100px; 
+.icon-medula-3 {
+    top: 80px;
+    left: 100px;
     width: 100px;
 }
 
 /* 4. Brazo Extracción (Arriba Derecha) */
-.icon-medula-4 { 
-    top: 50px; 
-    left: 325px; 
+.icon-medula-4 {
+    top: 50px;
+    left: 325px;
 }
 
 /* 5. Comida / Reloj (Abajo Derecha) */
-.icon-medula-5 { 
-    top: 120px; 
-    left: 700px; 
-    transform: translateX(-50%); 
+.icon-medula-5 {
+    top: 120px;
+    left: 700px;
+    transform: translateX(-50%);
 }
 
 /* 5. Comida / Reloj (Abajo Derecha) */
-.icon-medula-6 { 
-    top: 290px; 
-    left: 600px; 
+.icon-medula-6 {
+    top: 290px;
+    left: 600px;
 }
 
 /* 5. Comida / Reloj (Abajo Derecha) */
-.icon-medula-7 { 
-    top: 500px; 
-    left: 655px; 
+.icon-medula-7 {
+    top: 500px;
+    left: 655px;
 }
 
 /* =============================== TOOLTIP -LECHE ================================ */
 .tooltip-medula {
-  z-index: 1;  
-  position: absolute;
-  bottom: 110%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 300px;
-  background: #e8cfae;
-  color: #3c352b;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 15px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 1;
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    background: #e8cfae;
+    color: #3c352b;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .tooltip-medula::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 8px;
-  border-style: solid;
-  border-color: #e8cfae transparent transparent transparent;
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: #e8cfae transparent transparent transparent;
 }
 
 .icon-wrapper:hover .tooltip-medula {
-  opacity: 1;
-  transform: translateX(-50%) translateY(-10px);
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
 }
 
 
 /* POSICIONES  (Distribución circular LECHE) */
 /* 1. Hospital (Abajo Izquierda) */
-.icon-leche-1 { 
-    top: 460px; 
-    left: 50px; 
+.icon-leche-1 {
+    top: 460px;
+    left: 50px;
 }
 
 /* 2. DNI (Arriba Izquierda) */
-.icon-leche-2 { 
-    top: 300px; 
-    left: 80px; 
+.icon-leche-2 {
+    top: 300px;
+    left: 80px;
 }
 
 /* 3. Cuestionario / Papel (Arriba Centro) */
-.icon--leche-3 { 
-    top:100px;
-    left: 25%; 
-    transform: translateX(-50%); 
+.icon--leche-3 {
+    top: 100px;
+    left: 25%;
+    transform: translateX(-50%);
 }
 
 /* 4. Brazo Extracción (Arriba Derecha) */
-.icon-leche-4 { 
-    top: 320px; 
-    left: 600px; 
+.icon-leche-4 {
+    top: 320px;
+    left: 600px;
 }
 
 /* 5. Comida / Reloj (Abajo Derecha) */
-.icon-leche-5 { 
-    top: 90px; 
-    left: 660px; 
+.icon-leche-5 {
+    top: 90px;
+    left: 660px;
     width: 100px;
-    transform: translateX(-50%); 
+    transform: translateX(-50%);
 }
 
 /* 5. Comida / Reloj (Abajo Derecha) */
-.icon-leche-6 { 
-    top: 440px; 
-    left: 625px; 
+.icon-leche-6 {
+    top: 440px;
+    left: 625px;
 }
 
 /* =============================== TOOLTIP -LECHE ================================ */
 .tooltip-leche {
-  z-index: 1;  
-  position: absolute;
-  bottom: 110%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 300px;
-  background: #e8cfae;
-  color: #3c352b;
-  padding: 12px;
-  border-radius: 8px;
-  font-size: 15px;
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 1;
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    background: #e8cfae;
+    color: #3c352b;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 15px;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .tooltip-leche::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border-width: 8px;
-  border-style: solid;
-  border-color: #e8cfae transparent transparent transparent;
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: #e8cfae transparent transparent transparent;
 }
 
 .icon-wrapper:hover .tooltip-leche {
-  opacity: 1;
-  transform: translateX(-50%) translateY(-10px);
+    opacity: 1;
+    transform: translateX(-50%) translateY(-10px);
 }
 
 
 
 
- /* BENEFICIOS Y REQUISITOS -SANGRE- */
+/* BENEFICIOS Y REQUISITOS -SANGRE- */
 
 .beneficios-requsitos-sangre {
-  display: grid;
-  grid-template-columns: 1fr; 
-  gap: 20px; 
-  max-width: 1000px;
-  margin: 10px auto;
-  padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 10px auto;
+    padding: 20px;
 }
 
 .caja-info-sangre {
-  border-left: 5px solid #b11226;
-  padding: 25px;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin-top: none;
+    border-left: 5px solid #b11226;
+    padding: 25px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-top: none;
 }
 
-.beneficios-requsitos-sangre h3{
+.beneficios-requsitos-sangre h3 {
     font-weight: 600;
     text-align: justify;
     margin-bottom: 10px;
     margin-top: 0;
 }
 
-.beneficios-requsitos-sangre h4{
+.beneficios-requsitos-sangre h4 {
     font-size: 15px;
     font-weight: 300;
     line-height: 1.2;
@@ -1128,7 +1186,7 @@ border-color: #b11226 transparent transparent transparent;
     margin: 10px 0;
 }
 
-.beneficios-requsitos-sangre  li{
+.beneficios-requsitos-sangre li {
     font-size: 14px;
     font-weight: 400;
     margin-bottom: 10px;
@@ -1138,12 +1196,12 @@ border-color: #b11226 transparent transparent transparent;
 }
 
 @media (min-width: 769px) {
-  .beneficios-requsitos-sangre {
-    grid-template-columns: 1fr 1fr; 
-    gap: 40px;
-    margin: 60px auto;
-    padding: 20px;
-  }
+    .beneficios-requsitos-sangre {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin: 60px auto;
+        padding: 20px;
+    }
 }
 
 
@@ -1151,25 +1209,25 @@ border-color: #b11226 transparent transparent transparent;
    DONACIÓN DE MEDULA ÓSEA
    ============================ */
 
-   /* HERO_MEDULA */
+/* HERO_MEDULA */
 
-   .hero_medula{
+.hero_medula {
     padding: 40px 20px;
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
-   }
+}
 
-   .hero_medula h1{
+.hero_medula h1 {
     font-size: 36px;
     font-weight: 900;
     margin-bottom: 20px;
     line-height: 1.2;
     color: #F59D2A;
-     margin-bottom: 40px
-   }
+    margin-bottom: 40px
+}
 
-   .hero_medula p {
+.hero_medula p {
     text-align: justify;
     background: #ffffff;
     padding: 20px;
@@ -1177,7 +1235,7 @@ border-color: #b11226 transparent transparent transparent;
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
     margin: 20px auto;
     max-width: 800px;
-     margin-bottom: 50px
+    margin-bottom: 50px
 }
 
 .hero_medula h3 {
@@ -1188,77 +1246,77 @@ border-color: #b11226 transparent transparent transparent;
     border-radius: var(--radius);
     margin: 20px auto;
     max-width: 800px;
-     margin-bottom: 50px
+    margin-bottom: 50px
 }
 
 
 
-   /* Tipos de celulas */
+/* Tipos de celulas */
 
-      .contenedor-medula {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-gap: 20px;
-max-width: 800px;
-margin: 50px auto;
-background: transparent;
+.contenedor-medula {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    max-width: 800px;
+    margin: 50px auto;
+    background: transparent;
 }
 
 .tipo-medula img {
-  width: 100%;
-  max-width: 120px;
-  height: auto; 
-  display: block;
-  margin: 0 auto;
-  transition: transform 0.3s ease;
+    width: 100%;
+    max-width: 120px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
 }
 
 .tipo-medula {
-position: relative;
-text-align: center;
-font-size: 24px;
-font-weight: bold;
-cursor: pointer;
+    position: relative;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
- .tipo-medula .info-hover {
-position: absolute;
-bottom: 110%;
-left: 50%;
-transform: translateX(-50%);
-width: 220px;
-background: #F59D2A;
-color: white;
-padding: 15px;
-border-radius: 10px;
-font-size: 14px;
-opacity: 0;
-pointer-events: none;
-transition: opacity 0.3s ease, transform 0.3s ease;
+.tipo-medula .info-hover {
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 220px;
+    background: #F59D2A;
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 
 .tipo-medula:hover .info-hover {
-opacity: 1;
-transform: translateX(-50%) translateY(-5px);
+    opacity: 1;
+    transform: translateX(-50%) translateY(-5px);
 }
 
 
 .tipo-medula .info-hover::after {
-content: "";
-position: absolute;
-top: 100%;
-left: 50%;
-transform: translateX(-50%);
-border-width: 8px;
-border-style: solid;
-border-color: #F59D2A transparent transparent transparent;
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px;
+    border-style: solid;
+    border-color: #F59D2A transparent transparent transparent;
 }
 
 
-   /* PROCESO DONACIÓN MEDULA */
+/* PROCESO DONACIÓN MEDULA */
 
-.proceso-medula-img{
+.proceso-medula-img {
     max-height: 1120px;
     width: 75%;
     margin: 0 auto;
@@ -1267,51 +1325,51 @@ border-color: #F59D2A transparent transparent transparent;
     align-items: center;
     justify-content: center;
     position: relative;
- }
-
-.proceso-medula h3{
-   text-align: center;
-   font-size: 18px;
-   font-weight: 600;
-   margin-top: 0;
 }
 
-.proceso-medula h2{
-   text-align: center;
+.proceso-medula h3 {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 0;
+}
+
+.proceso-medula h2 {
+    text-align: center;
 }
 
 
-  /* BENEFICIOS Y REQUISITOS -MEDULA- */
+/* BENEFICIOS Y REQUISITOS -MEDULA- */
 
 .beneficios-requsitos-medula {
-  display: grid;
-  grid-template-columns: 1fr; 
-  gap: 20px; 
-  max-width: 1000px;
-  margin: 60px auto;
-  padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 20px;
 }
 
 .caja-info-medula {
-  border-left: 5px solid #F59D2A;
-  padding: 25px;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
+    border-left: 5px solid #F59D2A;
+    padding: 25px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
 
-.beneficios-requsitos-medula h3{
+.beneficios-requsitos-medula h3 {
     font-weight: 600;
     text-align: justify;
     margin-bottom: 10px;
     margin-top: 0;
 }
 
-.beneficios-requsitos-medula h4{
+.beneficios-requsitos-medula h4 {
     font-size: 15px;
     font-weight: 300;
     line-height: 1.2;
@@ -1319,7 +1377,7 @@ border-color: #F59D2A transparent transparent transparent;
     margin: 10px 0;
 }
 
-.beneficios-requsitos-medula  li{
+.beneficios-requsitos-medula li {
     font-size: 14px;
     font-weight: 400;
     margin-bottom: 10px;
@@ -1329,37 +1387,37 @@ border-color: #F59D2A transparent transparent transparent;
 }
 
 @media (min-width: 769px) {
-  .beneficios-requsitos-medula {
-    grid-template-columns: 1fr 1fr; 
-    gap: 40px;
-    margin: 60px auto;
-    padding: 20px;
-  }
+    .beneficios-requsitos-medula {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin: 60px auto;
+        padding: 20px;
+    }
 }
 
 /* ============================
    DONACIÓN DE ORGANOS
    ============================ */
 
-   /* HERO_ORGANOS */
+/* HERO_ORGANOS */
 
-   .hero_organos{
+.hero_organos {
     padding: 40px 20px;
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
-   }
+}
 
-   .hero_organos h1{
+.hero_organos h1 {
     font-size: 36px;
     font-weight: 900;
     margin-bottom: 20px;
     line-height: 1.2;
     color: #91C25A;
-     margin-bottom: 40px
-   }
+    margin-bottom: 40px
+}
 
-   .hero_organos p {
+.hero_organos p {
     text-align: justify;
     background: #ffffff;
     padding: 20px;
@@ -1367,109 +1425,119 @@ border-color: #F59D2A transparent transparent transparent;
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
     margin: 20px auto;
     max-width: 800px;
-     margin-bottom: 50px
+    margin-bottom: 50px
 }
 
 
-   /* Lista de espera transplantes */
+/* Lista de espera transplantes */
 
-     .grafico-organos {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  max-width: 800px;
-  margin: 40px auto;
+.grafico-organos {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    max-width: 800px;
+    margin: 40px auto;
 }
 
 .organo-item {
-  display: flex;
-  align-items: center;
-  gap: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .ilustracion-organo {
-  width: 250px;
-  text-align: center;
-  flex-shrink: 0;
+    width: 250px;
+    text-align: center;
+    flex-shrink: 0;
 }
 
 .ilustracion-organo img {
-  width: 45%;
+    width: 45%;
 }
 
 .contenedor-barra {
-  flex-grow: 1;
-  background-color: #f0f0f0; /* Fondo sutil para ver el camino de la barra */
-  border-radius: 7px;
+    flex-grow: 1;
+    background-color: #f0f0f0;
+    /* Fondo sutil para ver el camino de la barra */
+    border-radius: 7px;
 }
 
 .barra {
-  height: 40px;
-  border-radius: 7px;
-  display: flex;
-  align-items: center;
-  padding-left: 10px;
-  color: white;
-  font-weight: bold;
-  transition: width 1s ease-in-out; /* Esta es la animación */
-  width: 45px; /* Ancho inicial */
+    height: 40px;
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    color: white;
+    font-weight: bold;
+    transition: width 1s ease-in-out;
+    /* Esta es la animación */
+    width: 45px;
+    /* Ancho inicial */
 }
 
 /* Colores y anchos finales al pasar el ratón */
-.rinon-barra { background-color: #5a7ea6; }
-.higado-barra { background-color: #6c8c63; }
+.rinon-barra {
+    background-color: #5a7ea6;
+}
+
+.higado-barra {
+    background-color: #6c8c63;
+}
 
 /* Definimos el crecimiento proporcional */
 .organo-item:hover .rinon-barra {
-  width: 80%; /* Riñón crece mucho */
+    width: 80%;
+    /* Riñón crece mucho */
 }
 
 .organo-item:hover .higado-barra {
-  width: 30%; /* Hígado crece proporcionalmente menos */
+    width: 30%;
+    /* Hígado crece proporcionalmente menos */
 }
 
 /* Mostrar la cifra solo al crecer */
 .cifra {
-  opacity: 0;
-  transition: opacity 0.5s;
-  padding-right: 10px;
+    opacity: 0;
+    transition: opacity 0.5s;
+    padding-right: 10px;
 }
 
 .organo-item:hover .cifra {
-  opacity: 1;
+    opacity: 1;
 }
 
 /* PREGUNTAS FRECUENTES */
 
 .beneficios-requsitos-organos {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 40px; 
-  max-width: 1000px;
-  margin: 60px auto;
-  padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 20px;
 }
 
 .caja-info-organos {
-  border-left: 5px solid #91C25A;
-  padding: 25px;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
+    border-left: 5px solid #91C25A;
+    padding: 25px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
 
-.beneficios-requsitos-organos h3{
+.beneficios-requsitos-organos h3 {
     font-weight: 600;
     text-align: justify;
     margin-bottom: 10px;
     margin-top: 0;
 }
 
-.beneficios-requsitos-organos h4{
+.beneficios-requsitos-organos h4 {
     font-size: 15px;
     font-weight: 300;
     line-height: 1.2;
@@ -1477,7 +1545,7 @@ border-color: #F59D2A transparent transparent transparent;
     margin: 10px 0;
 }
 
-.beneficios-requsitos-organos li{
+.beneficios-requsitos-organos li {
     font-weight: 400;
     margin-bottom: 10px;
     margin-top: 10px;
@@ -1486,39 +1554,39 @@ border-color: #F59D2A transparent transparent transparent;
 }
 
 @media (min-width: 769px) {
-  .beneficios-requsitos-organos {
-    grid-template-columns: 1fr 1fr; 
-    gap: 40px;
-    margin: 60px auto;
-    padding: 20px;
-  }
+    .beneficios-requsitos-organos {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin: 60px auto;
+        padding: 20px;
+    }
 }
-   
+
 
 
 /* ============================
    DONACIÓN DE LECHE MATERNA
    ============================ */
 
-   /* HERO_LECHE */
+/* HERO_LECHE */
 
-   .hero_leche{
+.hero_leche {
     padding: 40px 20px;
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
-   }
+}
 
-   .hero_leche h1{
+.hero_leche h1 {
     font-size: 36px;
     font-weight: 900;
     margin-bottom: 20px;
     line-height: 1.2;
     color: #e8cfae;
-     margin-bottom: 40px
-   }
+    margin-bottom: 40px
+}
 
-   .hero_leche p {
+.hero_leche p {
     text-align: justify;
     background: #ffffff;
     padding: 20px;
@@ -1526,40 +1594,40 @@ border-color: #F59D2A transparent transparent transparent;
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
     margin: 20px auto;
     max-width: 800px;
-     margin-bottom: 50px
+    margin-bottom: 50px
 }
 
-  /* BENEFICIOS Y REQUISITOS -MEDULA- */
+/* BENEFICIOS Y REQUISITOS -MEDULA- */
 
 .beneficios-requsitos-leche {
-  display: grid;
-  grid-template-columns: 1fr; 
-  gap: 10px; 
-  max-width: 1000px;
-  margin: 15px auto;
-  padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    max-width: 1000px;
+    margin: 15px auto;
+    padding: 20px;
 }
 
 .caja-info-leche {
-  border-left: 5px solid #e8cfae;
-  padding: 25px;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
+    border-left: 5px solid #e8cfae;
+    padding: 25px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
 
-.beneficios-requsitos-leche h3{
+.beneficios-requsitos-leche h3 {
     font-weight: 600;
     text-align: justify;
     margin-bottom: 10px;
     margin-top: 0;
 }
 
-.beneficios-requsitos-leche h4{
+.beneficios-requsitos-leche h4 {
     font-size: 15px;
     font-weight: 300;
     line-height: 1.2;
@@ -1567,7 +1635,7 @@ border-color: #F59D2A transparent transparent transparent;
     margin: 10px 0;
 }
 
-.beneficios-requsitos-leche li{
+.beneficios-requsitos-leche li {
     font-size: 14px;
     font-weight: 400;
     margin-bottom: 10px;
@@ -1577,23 +1645,23 @@ border-color: #F59D2A transparent transparent transparent;
 }
 
 @media (min-width: 769px) {
-  .beneficios-requsitos-leche {
-    grid-template-columns: 1fr 1fr; 
-    gap: 20px;
-    margin: 20px auto;
-    padding: 20px;
-  }
+    .beneficios-requsitos-leche {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin: 20px auto;
+        padding: 20px;
+    }
 }
 
 
-.composicion-leche{
+.composicion-leche {
     max-height: 1120px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
- }
+}
 
 
 
@@ -1601,26 +1669,26 @@ border-color: #F59D2A transparent transparent transparent;
    DONACIÓN DE CORODÓN UMBILICAL
    ============================ */
 
-   /* HERO_CORDÓN */
+/* HERO_CORDÓN */
 
-   .hero_cordon{
+.hero_cordon {
     padding: 40px 20px;
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
     align-items: center;
-   }
+}
 
-   .hero_cordon h1{
+.hero_cordon h1 {
     font-size: 36px;
     font-weight: 900;
     margin-bottom: 20px;
     line-height: 1.2;
     color: #74CBF4;
-     margin-bottom: 40px
-   }
+    margin-bottom: 40px
+}
 
-   .hero_cordon p {
+.hero_cordon p {
     text-align: justify;
     background: #ffffff;
     padding: 20px;
@@ -1628,49 +1696,49 @@ border-color: #F59D2A transparent transparent transparent;
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
     margin: 20px auto;
     max-width: 800px;
-     margin-bottom: 50px
+    margin-bottom: 50px
 }
 
 .hero_cordon img {
-  width: 100%;
-  max-width: 100%;
-  height: auto; 
-  display: block;
-  margin: 0 auto;
-  transition: transform 0.3s ease;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    transition: transform 0.3s ease;
 }
 
-  /* BENEFICIOS Y REQUISITOS -MEDULA- */
+/* BENEFICIOS Y REQUISITOS -MEDULA- */
 
 .beneficios-requsitos-cordon {
-  display: grid;
-  grid-template-columns: 1fr; 
-  gap: 20px; 
-  max-width: 1000px;
-  margin: 60px auto;
-  padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 20px;
 }
 
 .caja-info-cordon {
-  border-left: 5px solid #74CBF4;
-  padding: 25px;
-  border-radius: 8px;
-  background-color: #fff;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  text-align: left;
+    border-left: 5px solid #74CBF4;
+    padding: 25px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
 }
 
-.beneficios-requsitos-cordon h3{
+.beneficios-requsitos-cordon h3 {
     font-weight: 600;
     text-align: justify;
     margin-bottom: 10px;
     margin-top: 0;
 }
 
-.beneficios-requsitos-cordon h4{
+.beneficios-requsitos-cordon h4 {
     font-size: 15px;
     font-weight: 300;
     line-height: 1.2;
@@ -1679,20 +1747,51 @@ border-color: #F59D2A transparent transparent transparent;
 }
 
 @media (min-width: 769px) {
-  .beneficios-requsitos-cordon {
-    grid-template-columns: 1fr 1fr; 
-    gap: 40px;
-    margin: 60px auto;
-    padding: 20px;
-  }
+    .beneficios-requsitos-cordon {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        margin: 60px auto;
+        padding: 20px;
+    }
 }
 
+/* ============================
+   CUSTOM ALERT
+   ============================ */
+.custom-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    padding: 20px 30px;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transform: translateX(120%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-left: 5px solid var(--primary-color);
+    font-family: inherit;
+    min-width: 300px;
+}
 
+.custom-alert.show {
+    transform: translateX(0);
+}
 
+.custom-alert.error {
+    border-left-color: #d9534f;
+    color: #a94442;
+}
 
+.custom-alert.success {
+    border-left-color: #5cb85c;
+    color: #3c763d;
+}
 
-
-
-
-
-
+.custom-alert-message {
+    font-weight: 600;
+    font-size: 1rem;
+}

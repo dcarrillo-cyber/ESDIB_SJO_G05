@@ -303,3 +303,123 @@ ul {
         justify-content: flex-end;
     }
 }
+
+/* ============================
+   CUSTOM ALERT
+   ============================ */
+.custom-alert {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transform: translateX(120%);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-left: 5px solid var(--primary-color);
+    font-family: inherit;
+    min-width: 300px;
+}
+
+.custom-alert.show {
+    transform: translateX(0);
+}
+
+.custom-alert.error {
+    border-left-color: #d9534f;
+    color: #a94442;
+}
+
+.custom-alert.success {
+    border-left-color: #5cb85c;
+    color: #3c763d;
+}
+
+.custom-alert-message {
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* ============================
+   CUSTOM CONFIRM MODAL
+   ============================ */
+.custom-confirm-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 4000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    animation: fadeIn 0.3s forwards;
+}
+
+.custom-confirm-box {
+    background: white;
+    padding: 30px;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transform: scale(0.9);
+    animation: scaleUp 0.3s forwards;
+}
+
+.custom-confirm-message {
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+.custom-confirm-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-confirm-yes,
+.btn-confirm-no {
+    padding: 10px 25px;
+    border-radius: 20px;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.btn-confirm-yes {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-confirm-yes:hover {
+    background: var(--primary-hover);
+    transform: scale(1.05);
+}
+
+.btn-confirm-no {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.btn-confirm-no:hover {
+    background: #d4d4d4;
+    transform: scale(1.05);
+}
+
+@keyframes scaleUp {
+    to {
+        transform: scale(1);
+    }
+}

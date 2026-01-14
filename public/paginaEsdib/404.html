@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página no encontrada - Vidar</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="icon" type="image/svg+xml" href="ilustraciones_logos/favicon.svg">
+    <style>
+        .error-container {
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .error-container h1 {
+            font-size: 8rem;
+            color: var(--primary-color);
+            margin: 0;
+            line-height: 1;
+        }
+
+        .error-container h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .error-container p {
+            max-width: 600px;
+            margin-bottom: 30px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .btn-home {
+            background: var(--primary-color);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(187, 7, 16, 0.4);
+        }
+
+        .floating-icon {
+            animation: float 3s ease-in-out infinite;
+            max-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="menu">
+            <a href="/"><img src="ilustraciones_logos/LOGOTIPO.svg" alt="Vidar Logo" class="logo"></a>
+        </div>
+    </header>
+
+    <main class="error-container">
+        <img src="ilustraciones_logos/medula.svg" alt="Ilustración" class="floating-icon">
+        <h1>404</h1>
+        <h2>¡Vaya! Te has perdido.</h2>
+        <p>Parece que la página que buscas no existe o ha sido movida. Pero no te preocupes, siempre puedes volver al
+            inicio para seguir ayudando a salvar vidas.</p>
+        <a href="/" class="btn-home">Volver al Inicio</a>
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Vidar. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+
+</html>

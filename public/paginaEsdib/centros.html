@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Centros</title>
+    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="icon" type="image/svg+xml" href="ilustraciones_logos/favicon.svg">
+    <style>
+        #map-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        #map {
+            height: 600px;
+            width: 100%;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+
+        .map-controls {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .popup-content h3 {
+            margin: 0 0 5px 0;
+            color: var(--primary-color);
+        }
+
+        .popup-content p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ENCABEZADO -->
+    <header class="header">
+        <div class="menu">
+            <img src="ilustraciones_logos/LOGOTIPO.svg" alt="Vidar Logo" class="logo">
+            <input type="checkbox" id="menu">
+            <label for="menu" class="menu-btn">
+                <div class="nav-icon">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </label>
+            <nav class="navbar">
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="centros.html" class="active">Mapa de Centros</a></li>
+                    <li><a href="sangre.html">Sangre</a></li>
+                    <li><a href="medula.html">Medula ósea</a></li>
+                    <li><a href="organos.html">Organos</a></li>
+                    <li><a href="leche.html">Leche materna</a></li>
+                    <li><a href="cordon.html">Cordón umbilical</a></li>
+
+                    <li id="nav-login"><a href="#" id="open-login-btn">Iniciar Sesión</a></li>
+                    <li id="nav-admin" style="display:none;"><a href="/admin">Panel Admin</a></li>
+                    <li id="nav-user" style="display:none;"><a href="#" id="logout-btn">Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" style="min-height: 40vh;">
+            <h2 class="slogan">Encuentra tu Centro de Donación</h2>
+            <p>Descubre los puntos de donación más cercanos a ti en toda España. Filtra por tipo de donación y encuentra
+                dónde puedes ayudar hoy mismo.</p>
+        </section>
+
+        <section id="map-container">
+            <div class="map-controls" id="filters-container">
+                <button class="filter-btn active" data-type="all">Ver Todos</button>
+                <!-- Filtros dinámicos se insertarán aquí -->
+            </div>
+            <div id="map"></div>
+        </section>
+
+        <!-- LISTADO DE CENTROS -->
+        <section class="section donation-list" id="centers-list-section" style="background-color: #fff;">
+            <h2 class="title">Listado de Centros</h2>
+
+            <div id="centers-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px; width: 100%;">
+                <!-- Dynamic Content -->
+            </div>
+
+            <div id="no-centers-msg" style="display:none; text-align:center; padding: 20px;">
+                <p>No se encontraron centros con los filtros actuales.</p>
+            </div>
+        </section>
+
+        <style>
+            /* Responsive Improvements */
+            /* Responsive Improvements */
+            @media (max-width: 768px) {
+                #map {
+                    height: 450px;
+                    /* Slightly taller for better UX */
+                }
+
+                .hero h2 {
+                    font-size: 1.8rem;
+                }
+
+                .hero p {
+                    padding: 15px;
+                    /* Reduce padding */
+                }
+
+                #map-container {
+                    padding: 0 10px;
+                    margin: 10px auto;
+                }
+
+                /* Grid layout for filters on mobile */
+                .map-controls {
+                    display: grid !important;
+                    grid-template-columns: repeat(2, 1fr);
+                    /* 2 columns */
+                    gap: 10px;
+                }
+
+                .filter-btn {
+                    width: 100%;
+                    padding: 8px 5px;
+                    font-size: 0.85rem;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                #centers-grid {
+                    grid-template-columns: 1fr !important;
+                }
+
+                /* Popup refinements */
+                .leaflet-popup-content {
+                    margin: 8px 10px !important;
+                    line-height: 1.4 !important;
+                }
+
+                .vidar-popup h3 {
+                    font-size: 1rem !important;
+                }
+            }
+
+            /* Card Styling Inline for specific page override or addition */
+            .center-card {
+                background: white;
+                border-radius: var(--radius);
+                padding: 25px;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+                transition: transform 0.3s ease;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                border: 1px solid #eee;
+            }
+
+            .center-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 25px rgba(187, 7, 16, 0.15);
+                border-color: #ffdcb8;
+            }
+
+            .center-card h3 {
+                color: var(--primary-color);
+                margin: 0;
+                font-size: 1.2rem;
+            }
+
+            .center-info-row {
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                font-size: 0.95rem;
+                color: #555;
+            }
+
+            .center-icons {
+                margin-top: auto;
+                padding-top: 15px;
+                border-top: 1px solid #f0f0f0;
+                display: flex;
+                gap: 10px;
+            }
+
+            .center-icons img {
+                width: 30px;
+                height: 30px;
+                object-fit: contain;
+                transition: transform 0.2s;
+            }
+
+            .center-icons img:hover {
+                transform: scale(1.2);
+            }
+        </style>
+
+    </main>
+
+    <footer class="footer">
+        <p>© 2025 Vidar. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- AUTH MODAL (Copied for consistency) -->
+    <div id="auth-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="login-section">
+                <h2>Iniciar Sesión</h2>
+                <form id="form-login">
+                    <div class="form-group">
+                        <label>Usuario</label>
+                        <input type="text" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Entrar</button>
+                    <p class="switch-auth">¿No tienes cuenta? <a href="#" id="go-to-register">Regístrate</a></p>
+                </form>
+            </div>
+            <div id="register-section" style="display:none;">
+                <h2>Registrarse</h2>
+                <form id="form-register">
+                    <div class="form-group">
+                        <label>Usuario</label>
+                        <input type="text" name="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contraseña</label>
+                        <input type="password" name="password" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Registrarse</button>
+                    <p class="switch-auth">¿Ya tienes cuenta? <a href="#" id="go-to-login">Inicia Sesión</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="index.js?v=2"></script>
+    <script src="mapa.js"></script>
+</body>
+
+</html>

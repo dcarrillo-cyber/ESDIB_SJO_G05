@@ -14,11 +14,11 @@ import { fileURLToPath } from 'url';
 dotenv.config();
 
 //Configuraciones de entorno
-const { MONGODB_URI, MONGODB_DB, port = process.env.PORT || 4000, API_KEY, AZURE_STORAGE_CONNECTION_STRING, AZURE_BLOB_CONTAINER, AZURE_STORAGE_ACCOUNT, AZURE_SAS_TOKEN } = process.env;
+const { MONGODB_URI, MONGODB_DB, port = process.env.PORT || 4000, AZURE_STORAGE_CONNECTION_STRING, AZURE_BLOB_CONTAINER, AZURE_STORAGE_ACCOUNT, AZURE_SAS_TOKEN } = process.env;
 
 // Verificar si falta algo crítico
-if (!MONGODB_URI || !MONGODB_DB || !API_KEY || !AZURE_STORAGE_CONNECTION_STRING || !AZURE_BLOB_CONTAINER || !AZURE_STORAGE_ACCOUNT || !AZURE_SAS_TOKEN) {
-  console.error('Faltan variables de entorno: MONGODB_URI, MONGODB_DB, API_KEY, AZURE...');
+if (!MONGODB_URI || !MONGODB_DB || !AZURE_STORAGE_CONNECTION_STRING || !AZURE_BLOB_CONTAINER || !AZURE_STORAGE_ACCOUNT || !AZURE_SAS_TOKEN) {
+  console.error('Faltan variables de entorno críticas (MONGODB, AZURE...). Revisar .env');
   process.exit(1);
 }
 
@@ -58,7 +58,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 app.use(express.static(path.join(__dirname, 'public/paginaEsdib')));
 app.use(express.static(path.join(__dirname, 'public/formulario admin')));
 
-// Configurar Multer (aunque no se especifica uso de imágenes en el nuevo esquema, lo dejamos por si acaso)
+// Configurar Multer
 const upload = multer({
   storage: multer.memoryStorage(),
   limits: { fileSize: 8 * 1024 * 1024, files: 10 },
@@ -68,17 +68,59 @@ const upload = multer({
   }
 });
 
-// Auth por API Key
-const apiKeyGuard = (req, res, next) => {
-  // Permitir acceso público a endpoints de autenticación y contacto
+// --- SESIONES Y COOKIES (Manual implementation without extra deps) ---
+function parseCookies(request) {
+  const list = {};
+  const cookieHeader = request.headers.cookie;
+  if (!cookieHeader) return list;
+
+  cookieHeader.split(';').forEach(function (cookie) {
+    let [name, ...rest] = cookie.split('=');
+    name = name?.trim();
+    if (!name) return;
+    const value = rest.join('=').trim();
+    if (!value) return;
+    list[name] = decodeURIComponent(value);
+  });
+
+  return list;
+}
+
+// Middleware de Autenticación
+const authGuard = async (req, res, next) => {
+  // Rutas públicas
   if (req.path.startsWith('/auth') || req.path.startsWith('/contacto')) return next();
-  // Permitir lectura pública de noticias
   if (req.method === 'GET' && req.path.startsWith('/noticias')) return next();
 
-  if (req.header('x-api-key') !== process.env.API_KEY) return res.status(401).json({ error: 'No autorizado' });
-  next();
+  // Leer cookie de sesión
+  const cookies = parseCookies(req);
+  const sessionId = cookies['session_id'];
+
+  if (!sessionId) {
+    return res.status(401).json({ error: 'No autorizado. Inicie sesión.' });
+  }
+
+  try {
+    const session = await db.collection('sessions').findOne({ token: sessionId });
+
+    // Verificar si existe y si no ha expirado
+    if (!session || session.expiresAt < new Date()) {
+      return res.status(401).json({ error: 'Sesión expirada o inválida' });
+    }
+
+    // Adjuntar usuario a la request
+    const user = await db.collection('users').findOne({ _id: session.userId });
+    if (!user) return res.status(401).json({ error: 'Usuario no encontrado' });
+
+    req.user = user;
+    next();
+  } catch (err) {
+    console.error('Auth Error:', err);
+    res.status(500).json({ error: 'Error interno de autenticación' });
+  }
 };
-app.use('/api', apiKeyGuard);
+
+app.use('/api', authGuard);
 
 // Conexión a MONGODB
 let client;
@@ -86,12 +128,16 @@ let db;
 async function connectToMongo() {
   client = new MongoClient(MONGODB_URI);
   await client.connect();
-  db = client.db('vidar_db'); // Forzamos vidar_db
+  db = client.db('vidar_db');
+
+  // Índices para sesiones (auto limpieza)
+  await db.collection('sessions').createIndex({ "expiresAt": 1 }, { expireAfterSeconds: 0 });
+  await db.collection('users').createIndex({ "username": 1 }, { unique: true });
+
   console.log('✅ Conectado a MongoDB (vidar_db)');
 }
 
-// --- HELPERS DE VALIDACIÓN ---
-
+// --- HELPERS DE VALIDACIÓN (Keep existing) ---
 function parseDateField(value, fieldName) {
   if (!value) return null;
   const d = new Date(value);
@@ -115,8 +161,7 @@ function parseFloatField(value, fieldName) {
   return num;
 }
 
-// --- NORMALIZADORES ---
-
+// --- NORMALIZADORES (Keep existing) ---
 function normalizeDonante(body) {
   const { nombre, apellidos, email, telefono, fecha_nacimiento, provincia, es_donante_registrado } = body;
   if (!nombre || !email) throw new Error('Nombre y Email son obligatorios para Donante');
@@ -156,12 +201,10 @@ function normalizeCentro(body) {
     };
   }
 
-  // tipos_disponibles se espera como array de IDs
   let tipos = [];
   if (Array.isArray(tipos_disponibles)) {
     tipos = tipos_disponibles.map(id => new ObjectId(id));
   } else if (typeof tipos_disponibles === 'string') {
-    // Si viene como string separado por comas o un solo ID
     tipos = tipos_disponibles.split(',').map(s => s.trim()).filter(s => ObjectId.isValid(s)).map(s => new ObjectId(s));
   }
 
@@ -206,15 +249,13 @@ function normalizeNoticia(body) {
   if (!titulo || !contenido) throw new Error('Título y Contenido son obligatorios');
   return {
     titulo: String(titulo).trim(),
-    imagen: imagen ? String(imagen).trim() : 'ilustraciones_logos/sang.svg', // Default
+    imagen: imagen ? String(imagen).trim() : 'ilustraciones_logos/sang.svg',
     contenido: String(contenido).trim(),
     fecha: fecha ? parseDateField(fecha, 'fecha') : new Date()
   };
 }
 
 // --- RUTAS GENÉRICAS ---
-
-// Helper para crear rutas CRUD básicas
 function createCrudRoutes(collectionName, normalizeFunc) {
   const router = express.Router();
 
@@ -358,7 +399,21 @@ authRouter.post('/login', async (req, res) => {
       return res.status(401).json({ error: 'Contraseña incorrecta' });
     }
 
-    // En un caso real usaríamos JWT. Aquí devolvemos datos básicos.
+    // --- SECURE SESSION CREATION ---
+    const sessionToken = crypto.randomBytes(64).toString('hex');
+    const expiresAt = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24 hours
+
+    await db.collection('sessions').insertOne({
+      token: sessionToken,
+      userId: user._id,
+      role: user.role,
+      createdAt: new Date(),
+      expiresAt: expiresAt
+    });
+
+    // Set secure cookie
+    res.setHeader('Set-Cookie', `session_id=${sessionToken}; HttpOnly; Path=/; Max-Age=${24 * 60 * 60}; SameSite=Lax`);
+
     res.json({
       message: 'Login exitoso',
       user: {
@@ -373,6 +428,30 @@ authRouter.post('/login', async (req, res) => {
   }
 });
 
+authRouter.post('/logout', async (req, res) => {
+  const cookies = parseCookies(req);
+  const sessionId = cookies['session_id'];
+
+  if (sessionId) {
+    await db.collection('sessions').deleteOne({ token: sessionId });
+  }
+
+  // Clear cookie
+  res.setHeader('Set-Cookie', `session_id=; HttpOnly; Path=/; Max-Age=0`);
+  res.json({ message: 'Sesión cerrada' });
+});
+
+authRouter.get('/check', authGuard, (req, res) => {
+  res.json({
+    authenticated: true,
+    user: {
+      id: req.user._id,
+      username: req.user.username,
+      role: req.user.role
+    }
+  });
+});
+
 app.use('/api/auth', authRouter);
 
 // Serve Homepage
@@ -380,9 +459,22 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/paginaEsdib/index.html'));
 });
 
-// Serve Admin Panel
+// Serve Admin Panel (Protegido básicamente, aunque la API ya protege los datos)
 app.get('/admin', (req, res) => {
+  // Opcional: Podríamos verificar la sesión aquí y redirigir si no es admin,
+  // pero ya que es una SPA, dejaremos que cargue y que la API rechace las peticiones si no hay auth.
+  // Sin embargo, para mayor seguridad, verifiquemos cookie básica.
+  const cookies = parseCookies(req);
+  if (!cookies['session_id']) {
+    return res.redirect('/?login=true'); // Redirigir a home con login abierto
+  }
   res.sendFile(path.join(__dirname, 'public/formulario admin/index.html'));
+});
+
+// 404 Fallback
+// 404 Fallback
+app.use((req, res) => {
+  res.status(404).sendFile(path.join(__dirname, 'public/paginaEsdib/404.html'));
 });
 
 // Arranque

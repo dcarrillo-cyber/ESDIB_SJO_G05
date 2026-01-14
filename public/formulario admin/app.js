@@ -1,7 +1,6 @@
 // CONFIG
-//const API_BASE = '/api';
 const API_BASE = '/api';
-const API_KEY = '50e867a909ed4f1989392c27912eaa8a';
+// API Key removed significantly improving security
 
 // Estado global
 let currentSection = 'donantes';
@@ -12,16 +11,107 @@ const q = (sel) => document.querySelector(sel);
 const qa = (sel) => document.querySelectorAll(sel);
 const val = (sel) => (q(sel)?.value ?? '').trim();
 
+// Custom Alert Helper
+function showAlert(message, type = 'success') {
+  const existingAlert = document.getElementById('custom-alert');
+  if (existingAlert) existingAlert.remove();
+
+  const alertBox = document.createElement('div');
+  alertBox.id = 'custom-alert';
+  alertBox.className = `custom-alert ${type}`;
+
+  let iconHtml = '';
+  if (type === 'success') {
+    iconHtml = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`;
+  } else {
+    iconHtml = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`;
+  }
+
+  alertBox.innerHTML = `${iconHtml}<span class="custom-alert-message">${message}</span>`;
+  document.body.appendChild(alertBox);
+
+  requestAnimationFrame(() => {
+    alertBox.classList.add('show');
+  });
+
+  setTimeout(() => {
+    alertBox.classList.remove('show');
+    setTimeout(() => {
+      alertBox.remove();
+    }, 500);
+  }, 3000);
+}
+
+// Custom Confirm Helper
+function showConfirm(message) {
+  return new Promise((resolve) => {
+    // Create Overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'custom-confirm-overlay';
+
+    // Create Box
+    const box = document.createElement('div');
+    box.className = 'custom-confirm-box';
+
+    // Message
+    const msg = document.createElement('p');
+    msg.className = 'custom-confirm-message';
+    msg.textContent = message;
+
+    // Actions
+    const actions = document.createElement('div');
+    actions.className = 'custom-confirm-actions';
+
+    const btnYes = document.createElement('button');
+    btnYes.className = 'btn-confirm-yes';
+    btnYes.textContent = 'Aceptar';
+
+    const btnNo = document.createElement('button');
+    btnNo.className = 'btn-confirm-no';
+    btnNo.textContent = 'Cancelar';
+
+    // Append all
+    actions.appendChild(btnNo);
+    actions.appendChild(btnYes);
+    box.appendChild(msg);
+    box.appendChild(actions);
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+
+    // Handlers
+    function close(result) {
+      overlay.style.opacity = '0';
+      box.style.transform = 'scale(0.9)';
+      setTimeout(() => {
+        if (overlay.parentNode) overlay.parentNode.removeChild(overlay);
+        resolve(result);
+      }, 300);
+    }
+
+    btnYes.onclick = () => close(true);
+    btnNo.onclick = () => close(false);
+  });
+}
+
 // Fetch Wrapper
 async function apiFetch(path, options = {}) {
+  // Ensure we send cookies
+  options.credentials = 'include';
+
   const res = await fetch(`${API_BASE}${path}`, {
     ...options,
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': API_KEY,
       ...(options.headers || {})
     }
   });
+
+  if (res.status === 401) {
+    alert('Sesión expirada. Redirigiendo...');
+    window.location.href = '/?login=true'; // Redirect to login
+    return null;
+  }
+
   if (!res.ok) {
     const msg = await res.text().catch(() => 'Error');
     throw new Error(msg || 'Error de red');
@@ -156,7 +246,7 @@ async function handleFormSubmit(e) {
       // Usamos fetch directo para multipart/form-data (no setear Content-Type manual)
       const res = await fetch('/api/upload', {
         method: 'POST',
-        headers: { 'x-api-key': API_KEY },
+        credentials: 'include', // Cookies
         body: uploadData
       });
 
@@ -165,7 +255,7 @@ async function handleFormSubmit(e) {
       payload.imagen = data.url; // Asignar URL de Azure
 
     } catch (uploadErr) {
-      alert('Falló la subida de imagen: ' + uploadErr.message);
+      showAlert('Falló la subida de imagen: ' + uploadErr.message, 'error');
       return; // Detener proceso
     }
   }
@@ -177,18 +267,18 @@ async function handleFormSubmit(e) {
         method: 'PUT',
         body: JSON.stringify(payload)
       });
-      alert('Actualizado correctamente');
+      showAlert('Actualizado correctamente', 'success');
     } else {
       await apiFetch(`/${endpoint}`, {
         method: 'POST',
         body: JSON.stringify(payload)
       });
-      alert('Creado correctamente');
+      showAlert('Creado correctamente', 'success');
     }
     resetForms();
     loadList(section);
   } catch (err) {
-    alert('Error: ' + err.message);
+    showAlert('Error: ' + err.message, 'error');
   }
 }
 
@@ -229,7 +319,8 @@ function startEdit(section, item) {
 }
 
 async function deleteItem(section, id) {
-  if (!confirm('¿Seguro que quieres eliminar este registro?')) return;
+  const confirmed = await showConfirm('¿Seguro que quieres eliminar este registro?');
+  if (!confirmed) return;
 
   let endpoint = section;
   if (section === 'tipos') endpoint = 'tipos_donacion';
@@ -240,7 +331,7 @@ async function deleteItem(section, id) {
     loadList(section);
     if (editingId === id) resetForms();
   } catch (e) {
-    alert('Error al eliminar: ' + e.message);
+    showAlert('Error al eliminar: ' + e.message, 'error');
   }
 }
 
