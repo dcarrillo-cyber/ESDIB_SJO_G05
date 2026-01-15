@@ -1795,3 +1795,9 @@ body {
     font-weight: 600;
     font-size: 1rem;
 }
+
+/* --- ESTILO PERSONALIZADO DEL MAPA --- */
+/* Convierte el mapa de colores (OpenStreetMap) en un diseño minimalista Blanco/Gris */
+.map-grayscale {
+    filter: grayscale(100%) brightness(105%) contrast(90%);
+}

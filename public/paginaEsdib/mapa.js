@@ -23,10 +23,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         zoomOutTitle: 'Alejar'
     }).addTo(map);
 
-    // Usamos OpenStreetMap Estándar para asegurar nombres locales (en España salen en español)
+    // TRUCO: Usamos OpenStreetMap Estándar (que tiene nombres en español)
+    // pero le añadimos un filtro CSS (clase 'map-grayscale') para que se vea blanco y negro,
+    // eliminando los colores verdes y marrones que no te gustaban.
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-        maxZoom: 19
+        maxZoom: 19,
+        className: 'map-grayscale' // Clase para aplicar el filtro B/N en CSS
     }).addTo(map);
 
     // Variables de estado
