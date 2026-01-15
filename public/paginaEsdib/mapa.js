@@ -13,13 +13,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         zoom: 6,
         minZoom: 5,
         maxBounds: spainBounds,
-        maxBoundsViscosity: 1.0 // Rebote duro al salir
+        maxBoundsViscosity: 1.0, // Rebote duro al salir
+        zoomControl: false // Desactivamos el zoom por defecto para traducirlo
     });
 
-    // Usamos CartoDB Light para un diseño más limpio y moderno
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-        subdomains: 'abcd',
+    // Control de Zoom en Español
+    L.control.zoom({
+        zoomInTitle: 'Acercar',
+        zoomOutTitle: 'Alejar'
+    }).addTo(map);
+
+    // Usamos OpenStreetMap Estándar para asegurar nombres locales (en España salen en español)
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         maxZoom: 19
     }).addTo(map);
 
