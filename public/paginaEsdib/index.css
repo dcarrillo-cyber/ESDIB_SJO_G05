@@ -178,7 +178,7 @@ body {
 .slogan {
     font-size: 32px;
     font-weight: 900;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     line-height: 1.2;
     color: var(--primary-color);
 }
@@ -189,9 +189,9 @@ body {
     margin: 20px auto;
     display: block; */
     width: 100%;
-    max-width: 500px;
+    max-width: 700px;
     /* Reduced max-width for hero image */
-    margin: 20px auto;
+    margin: 40px auto;
     display: block;
     will-change: transform;
     /* Optimize rendering */
@@ -202,7 +202,7 @@ body {
     padding: 20px;
     border-radius: var(--radius);
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
-    margin: 20px auto;
+    margin: 30px auto;
     max-width: 800px;
 }
 
