@@ -91,6 +91,7 @@ const authGuard = async (req, res, next) => {
   // Rutas públicas
   if (req.path.startsWith('/auth') || req.path.startsWith('/contacto')) return next();
   if (req.method === 'GET' && req.path.startsWith('/noticias')) return next();
+  if (req.method === 'GET' && (req.path.startsWith('/centros') || req.path.startsWith('/tipos_donacion'))) return next();
 
   // Leer cookie de sesión
   const cookies = parseCookies(req);
