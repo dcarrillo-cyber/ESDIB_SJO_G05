@@ -222,10 +222,14 @@ body {
     font-weight: 900;
 }
 
-.swiper {
+.apartado-noticias .swiper {
     width: 100%;
-    padding-bottom: 50px;
+    padding-bottom: 70px !important;
     /* Space for pagination */
+}
+
+.swiper-pagination {
+    bottom: 5px !important;
 }
 
 .swiper-slide {
@@ -249,7 +253,7 @@ body {
 
 .noticias:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); REMOVED for better performance */
 }
 
 .noticias h3 {
@@ -560,7 +564,9 @@ body {
     }
 
     .navbar ul li a:hover {
-        transform: translateY(-2px);
+        /* transform: translateY(-2px); REMOVED to prevent flickering */
+        background: var(--primary-color);
+        color: white;
     }
 
     /* Hero */
@@ -587,10 +593,7 @@ body {
         /* Span full width */
     }
 
-    /* Contact Section - Side by Side */
-    .contact-wrapper-hack {
-        /* If we had a wrapper. For now, we rely on flow. */
-    }
+
 
     /* Since Contact HTML is Section > H2 > Div(info) > Form
        We can grid the section too. */

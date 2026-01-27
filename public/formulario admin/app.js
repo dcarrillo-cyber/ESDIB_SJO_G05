@@ -3,7 +3,7 @@ const API_BASE = '/api';
 // API Key removed significantly improving security
 
 // Estado global
-let currentSection = 'donantes';
+let currentSection = 'centros';
 let editingId = null;
 
 // Helpers
@@ -364,5 +364,5 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Cargar sección inicial
-  loadList('donantes');
+  loadList('centros');
 });

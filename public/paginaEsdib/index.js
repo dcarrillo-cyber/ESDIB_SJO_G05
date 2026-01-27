@@ -8,36 +8,41 @@ function initSwiper(slideCount) {
     // We need loop only if we have enough slides for the largest breakpoint (3)
     const enableLoop = slideCount >= 3;
 
-    if (swiperInstance) {
-        swiperInstance.destroy(true, true);
-    }
-
-    swiperInstance = new Swiper(".mySwiper", {
-        slidesPerView: 3,
-        spaceBetween: 30,
-        loop: enableLoop,
-        // loopFillGroupWithBlank: true, // Only if we want to fill usage groups
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev"
-        },
-        breakpoints: {
-            0: {
-                slidesPerView: 1
-            },
-            520: {
-                slidesPerView: 2
-            },
-            950: {
-                slidesPerView: 3
-            }
+    const swiperContainer = document.querySelector(".mySwiper");
+    if (swiperContainer) {
+        if (swiperInstance) {
+            swiperInstance.destroy(true, true);
         }
-    });
-    window.swiper = swiperInstance;
+
+        swiperInstance = new Swiper(".mySwiper", {
+            slidesPerView: 3,
+            spaceBetween: 30,
+            loop: enableLoop,
+            preventClicks: false,
+            preventClicksPropagation: false,
+            // loopFillGroupWithBlank: true, // Only if we want to fill usage groups
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev"
+            },
+            breakpoints: {
+                0: {
+                    slidesPerView: 1
+                },
+                520: {
+                    slidesPerView: 2
+                },
+                950: {
+                    slidesPerView: 3
+                }
+            }
+        });
+        window.swiper = swiperInstance;
+    }
 }
 
 // --- AUTH LOGIC ---
@@ -291,7 +296,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <img src="${img}" alt="${title}" loading="lazy" style="will-change: transform;" onerror="this.onerror=null;this.src='ilustraciones_logos/sang.svg';">
                 <p>${content}</p>
                 <p>${dateStr}</p>
-                <a href="#" class="saber-mas-btn1">Saber más</a>
             </div>
         </div>
         `;

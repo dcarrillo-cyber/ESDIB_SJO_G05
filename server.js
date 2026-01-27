@@ -55,8 +55,9 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-app.use(express.static(path.join(__dirname, 'public/paginaEsdib')));
-app.use(express.static(path.join(__dirname, 'public/formulario admin')));
+// Optimization: Cache static assets for 1 day
+app.use(express.static(path.join(__dirname, 'public/paginaEsdib'), { maxAge: '1d' }));
+app.use(express.static(path.join(__dirname, 'public/formulario admin'), { maxAge: '1d' }));
 
 // Configurar Multer
 const upload = multer({
@@ -270,6 +271,11 @@ function createCrudRoutes(collectionName, normalizeFunc) {
       res.status(500).json({ error: 'Error al obtener datos' });
     }
   });
+
+  // GET ONE
+
+
+
 
   // POST
   router.post('/', async (req, res) => {
